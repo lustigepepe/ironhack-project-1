@@ -16,7 +16,7 @@ Instance C (Database Tier): Runs PostgreSQL in its own private subnet, optionall
 
 ## Create your EC2 instances:
 
-$${\color{green} \textbf{2 AZ with:}}$$
+$${\color{green} \Large \textbf{2 AZ with:}}$$
 **A** in a )1( public subnet from Vote + Result, this instance will be used as a _Bastion Host_
 **B** in a )2( private subnet for (Redis + Worker)
 **C** own )3( private subnet for PostgreSQL, read replica ##standby server##
