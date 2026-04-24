@@ -1,0 +1,75 @@
+# ========================================
+# Terraform
+# ========================================
+**/.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+*.auto.tfvars
+crash.log
+*.tfplan
+*.tfout
+override.tf
+override.tf.json
+**/_override.tf
+**/_override.tf.json
+
+# Terraform lock file (optional - usually committed)
+# .terraform.lock.hcl
+
+# ========================================
+# Ansible
+# ========================================
+*.retry
+*.log
+cache/
+facts/
+*.vault_pass
+.vault_pass.txt
+ansible.log
+playbook.retry
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# ========================================
+# General
+# ========================================
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE / Editors
+.vscode/
+.idea/
+*.iml
+.project
+.classpath
+
+# Python (used by some Ansible modules)
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Logs & Backups
+*.log
+*.backup
+*.bak
+
+# Sensitive files (be careful)
+*.pem
+*.key
+*.crt
+secrets.yml
+inventory.ini
+inventory.yaml
+hosts
+
+# Terraform/Ansible temp files
+.terraform.lock.hcl
