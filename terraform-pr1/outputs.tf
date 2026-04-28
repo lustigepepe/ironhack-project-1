@@ -1,0 +1,69 @@
+# ==================== OUTPUTS ====================
+
+output "vpc_id" {
+  value = aws_vpc.main.id
+}
+
+output "public_subnets" {
+  value = { for k, v in aws_subnet.public : k => v.id }
+}
+
+output "private_subnets" {
+  value = { for k, v in aws_subnet.private : k => v.id }
+}
+
+output "db_subnets" {
+  value = { for k, v in aws_subnet.db : k => v.id }
+}
+
+output "ssm_profile_name" {
+  value = aws_iam_instance_profile.ssm_profile.name
+}
+
+# ==================== INSTANCE IDs ====================
+
+output "vote_instances" {
+  description = "Vote instances IDs (one per AZ)"
+  value       = { for k, v in aws_instance.vote : k => v.id }
+}
+
+output "worker_instances" {
+  description = "Worker instances IDs (one per AZ)"
+  value       = { for k, v in aws_instance.worker : k => v.id }
+}
+
+output "postgres_primary_id" {
+  value = aws_instance.postgres_primary.id
+}
+
+output "postgres_standby_id" {
+  value = aws_instance.postgres_standby.id
+}
+
+# ==================== SSM CONNECTION COMMANDS (Most Useful) ====================
+
+output "ssm_commands" {
+  description = "Ready-to-copy SSM connection commands"
+  value = {
+    vote_az1         = "aws ssm start-session --target ${aws_instance.vote[var.azs[0]].id}"
+    vote_az2         = "aws ssm start-session --target ${aws_instance.vote[var.azs[1]].id}"
+    worker_az1       = "aws ssm start-session --target ${aws_instance.worker[var.azs[0]].id}"
+    worker_az2       = "aws ssm start-session --target ${aws_instance.worker[var.azs[1]].id}"
+    postgres_primary = "aws ssm start-session --target ${aws_instance.postgres_primary.id}"
+    postgres_standby = "aws ssm start-session --target ${aws_instance.postgres_standby.id}"
+  }
+}
+
+# ==================== PRIVATE IPs (Helpful for internal communication) ====================
+
+output "private_ips" {
+  description = "Private IP addresses of all instances"
+  value = {
+    vote_az1         = aws_instance.vote[var.azs[0]].private_ip
+    vote_az2         = aws_instance.vote[var.azs[1]].private_ip
+    worker_az1       = aws_instance.worker[var.azs[0]].private_ip
+    worker_az2       = aws_instance.worker[var.azs[1]].private_ip
+    postgres_primary = aws_instance.postgres_primary.private_ip
+    postgres_standby = aws_instance.postgres_standby.private_ip
+  }
+}
