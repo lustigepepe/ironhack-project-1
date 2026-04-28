@@ -45,12 +45,12 @@ output "postgres_standby_id" {
 output "ssm_commands" {
   description = "Ready-to-copy SSM connection commands"
   value = {
-    vote_az1         = "aws ssm start-session --target ${aws_instance.vote[var.azs[0]].id}"
-    vote_az2         = "aws ssm start-session --target ${aws_instance.vote[var.azs[1]].id}"
-    worker_az1       = "aws ssm start-session --target ${aws_instance.worker[var.azs[0]].id}"
-    worker_az2       = "aws ssm start-session --target ${aws_instance.worker[var.azs[1]].id}"
-    postgres_primary = "aws ssm start-session --target ${aws_instance.postgres_primary.id}"
-    postgres_standby = "aws ssm start-session --target ${aws_instance.postgres_standby.id}"
+    vote_az1         = "aws ssm start-session --target ${aws_instance.vote[var.azs[0]].id} --region us-east-2"
+    vote_az2         = "aws ssm start-session --target ${aws_instance.vote[var.azs[1]].id} --region us-east-2"
+    worker_az1       = "aws ssm start-session --target ${aws_instance.worker[var.azs[0]].id} --region us-east-2"
+    worker_az2       = "aws ssm start-session --target ${aws_instance.worker[var.azs[1]].id} --region us-east-2"
+    postgres_primary = "aws ssm start-session --target ${aws_instance.postgres_primary.id} --region us-east-2"
+    postgres_standby = "aws ssm start-session --target ${aws_instance.postgres_standby.id} --region us-east-2"
   }
 }
 

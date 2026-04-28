@@ -111,18 +111,21 @@ resource "aws_route_table" "private" {
 
 # ==================== ROUTE TABLE ASSOCIATIONS ====================
 resource "aws_route_table_association" "public" {
+  provider       = aws.use1
   for_each       = aws_subnet.public
   subnet_id      = each.value.id
   route_table_id = aws_route_table.public.id
 }
 
 resource "aws_route_table_association" "private" {
+  provider       = aws.use1
   for_each       = aws_subnet.private
   subnet_id      = each.value.id
   route_table_id = aws_route_table.private.id
 }
 
 resource "aws_route_table_association" "db" {
+  provider       = aws.use1
   for_each       = aws_subnet.db
   subnet_id      = each.value.id
   route_table_id = aws_route_table.private.id
@@ -167,6 +170,17 @@ resource "aws_instance" "vote" {
   subnet_id            = each.value.id
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
 
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt-get update -y
+              # Ensure SSM Agent is installed and running via Snap
+              sudo snap install amazon-ssm-agent --classic || echo "SSM Agent already installed"
+
+              # Start and enable the agent
+              sudo snap enable amazon-ssm-agent
+              sudo snap start amazon-ssm-agent
+              EOF
+
 
   tags = {
     Name = "${var.project_name}-vote-${each.key}"
@@ -184,6 +198,16 @@ resource "aws_instance" "worker" {
   subnet_id            = each.value.id
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
 
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt-get update -y
+              # Ensure SSM Agent is installed and running via Snap
+              sudo snap install amazon-ssm-agent --classic || echo "SSM Agent already installed"
+
+              # Start and enable the agent
+              sudo snap enable amazon-ssm-agent
+              sudo snap start amazon-ssm-agent
+              EOF
 
   tags = {
     Name = "${var.project_name}-worker-${each.key}"
@@ -201,6 +225,17 @@ resource "aws_instance" "postgres_primary" {
 
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
 
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt-get update -y
+              # Ensure SSM Agent is installed and running via Snap
+              sudo snap install amazon-ssm-agent --classic || echo "SSM Agent already installed"
+
+              # Start and enable the agent
+              sudo snap enable amazon-ssm-agent
+              sudo snap start amazon-ssm-agent
+              EOF
+
   tags = {
     Name = "${var.project_name}-postgres-primary"
     Role = "postgres-primary"
@@ -216,6 +251,17 @@ resource "aws_instance" "postgres_standby" {
   subnet_id     = aws_subnet.db[var.azs[1]].id # Explicit AZ2
 
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
+
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt-get update -y
+              # Ensure SSM Agent is installed and running via Snap
+              sudo snap install amazon-ssm-agent --classic || echo "SSM Agent already installed"
+
+              # Start and enable the agent
+              sudo snap enable amazon-ssm-agent
+              sudo snap start amazon-ssm-agent
+              EOF
 
   tags = {
     Name = "${var.project_name}-postgres-standby"
