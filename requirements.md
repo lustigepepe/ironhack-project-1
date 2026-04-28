@@ -18,22 +18,31 @@ Instance C (Database Tier): Runs PostgreSQL in its own private subnet, optionall
 
 **$${\color{green} \Large \textbf{2 AZ with:}}$$**
 
-**A** in a )1( public subnet from Vote + Result, this instance will be used as a _Bastion Host_
+**A** in a )1( public subnet from Vote + Result
 **B** in a )2( private subnet for (Redis + Worker)
 **C** own )3( private subnet for PostgreSQL, read replica ##standby server##
 
+AWS SSM Session Manager
+
 # _Dependencies_
+
+- Internetgateway
+- Targetgroup
+- Load balancer
+- asg
 
 ## Load balancer for :
 
 - Vote
 - Result
 
-## 2 Availability Zones in pu Subnets
+## Security Groups:
+
+Vote/Result SG: Allows incoming HTTP/HTTPS from the internet.
+Redis/Worker SG: Allows inbound traffic from Vote/Result EC2 to Redis port (6379), and allows outbound to Postgres.
+Postgres SG: Allows inbound traffic on port 5432 only from the Worker SG (and possibly from Vote/Result if needed directly).
 
 ## Target Groups for vote and result
-
-redis private
 
 Vote → redis
 Worker → redis
