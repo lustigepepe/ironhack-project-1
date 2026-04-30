@@ -167,9 +167,9 @@ resource "aws_iam_role_policy_attachment" "ansible_ssm_access" {
 
 # ==================== ANSIBLE SSM S3 BUCKET ====================
 resource "aws_s3_bucket" "ansible_ssm" {
-  provider = aws.use1
-  bucket   = "vote-app-terraform-ansible-ssm"
-
+  provider      = aws.use1
+  bucket        = "${var.project_name}-ansible-ssm-bucket-access"
+  force_destroy = true
   tags = {
     Name      = "${var.project_name}-ansible-ssm"
     Purpose   = "ansible-ssm-session-manager"
