@@ -158,6 +158,62 @@ resource "aws_iam_instance_profile" "ssm_profile" {
   role     = aws_iam_role.ssm_role.name
 }
 
+resource "aws_iam_role_policy_attachment" "ansible_ssm_access" {
+  provider   = aws.use1
+  role       = aws_iam_role.ssm_role.name
+  policy_arn = aws_iam_policy.ansible_ssm_bucket_access.arn
+}
+
+
+# ==================== ANSIBLE SSM S3 BUCKET ====================
+resource "aws_s3_bucket" "ansible_ssm" {
+  provider = aws.use1
+  bucket   = "vote-app-terraform-ansible-ssm"
+
+  tags = {
+    Name      = "${var.project_name}-ansible-ssm"
+    Purpose   = "ansible-ssm-session-manager"
+    ManagedBy = "Terraform"
+  }
+}
+
+
+# Block public access (security best practice)
+resource "aws_s3_bucket_public_access_block" "ansible_ssm" {
+  provider = aws.use1
+  bucket   = aws_s3_bucket.ansible_ssm.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+# ==================== IAM POLICY FOR ANSIBLE SSM BUCKET ====================
+resource "aws_iam_policy" "ansible_ssm_bucket_access" {
+  provider = aws.use1
+  name     = "${var.project_name}-ansible-ssm-bucket-access"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:ListBucket"
+        ]
+        Resource = [
+          aws_s3_bucket.ansible_ssm.arn,
+          "${aws_s3_bucket.ansible_ssm.arn}/*"
+        ]
+      }
+    ]
+  })
+}
+
+
 # ==================== EC2 INSTANCES ====================
 
 # Vote + Result (Public Subnets)
@@ -183,8 +239,9 @@ resource "aws_instance" "vote" {
 
 
   tags = {
-    Name = "${var.project_name}-vote-${each.key}"
-    Role = "vote-result"
+    Name    = "${var.project_name}-vote-${each.key}"
+    Role    = "vote-result"
+    Project = var.project_name
   }
 }
 
@@ -210,8 +267,9 @@ resource "aws_instance" "worker" {
               EOF
 
   tags = {
-    Name = "${var.project_name}-worker-${each.key}"
-    Role = "redis-worker"
+    Name    = "${var.project_name}-worker-${each.key}"
+    Role    = "redis-worker"
+    Project = var.project_name
   }
 }
 
@@ -237,8 +295,9 @@ resource "aws_instance" "postgres_primary" {
               EOF
 
   tags = {
-    Name = "${var.project_name}-postgres-primary"
-    Role = "postgres-primary"
+    Name    = "${var.project_name}-postgres-primary"
+    Role    = "postgres-primary"
+    Project = var.project_name
   }
 }
 
@@ -264,7 +323,8 @@ resource "aws_instance" "postgres_standby" {
               EOF
 
   tags = {
-    Name = "${var.project_name}-postgres-standby"
-    Role = "postgres-standby"
+    Name    = "${var.project_name}-postgres-standby"
+    Role    = "postgres-standby"
+    Project = var.project_name
   }
 }
