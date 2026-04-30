@@ -1,0 +1,17 @@
+---
+- name: Test if Vault is working
+  hosts: localhost
+  connection: local
+
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+
+  tasks:
+
+    - name: Show Vault variables
+      debug:
+        msg: |
+          docker_username     = {{ docker_username | default('NOT LOADED') }}
+          docker_password = {{ '*** LOADED ***' if docker_password is defined else 'NOT LOADED' }}
+          docker_registry_url      = {{ docker_registry_url | default('NOT LOADED') }}

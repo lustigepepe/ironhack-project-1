@@ -1,0 +1,25 @@
+---
+plugin: amazon.aws.aws_ec2
+
+regions:
+  - us-east-2
+
+filters:
+  instance-state-name: running
+  tag:Name: "vote-app-hagen*" # Matches all your instances
+
+keyed_groups:
+  # Group by Role tag → role_vote_result, role_redis_worker, etc.
+  - key: tags.Role
+    prefix: role_
+    separator: ""
+
+  # Group by full Name tag
+  - key: tags.Name
+    prefix: name_
+    separator: ""
+
+  # Group by Availability Zone
+  - key: placement.availability_zone
+    prefix: az_
+    separator: ""

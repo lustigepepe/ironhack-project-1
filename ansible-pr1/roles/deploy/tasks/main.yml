@@ -1,0 +1,43 @@
+---
+- name: Create application directory
+  file:
+    path: "{{ app_dir }}"
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: "0755"
+
+- name: Copy docker-compose.yml to remote host
+  copy:
+    src: "{{ playbook_dir }}/docker-compose.yml"
+    dest: "{{ app_dir }}/docker-compose.yml"
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Login to Docker registry
+  community.docker.docker_login:
+    username: "{{ docker_username | default(omit) }}"
+    password: "{{ docker_password | default(omit) }}"
+  no_log: true
+  when: docker_username is defined
+
+- name: Deploy specific Docker services
+  community.docker.docker_compose_v2:
+    project_src: "{{ app_dir }}"
+    services: "{{ services_to_deploy | default(omit) }}"
+    state: present
+    pull: always
+    recreate: always
+  register: compose_result
+
+- name: Display compose deployment result
+  debug:
+    var: compose_result
+    verbosity: 1
+
+- name: Show running containers
+  command: docker compose ps
+  args:
+    chdir: "{{ app_dir }}"
+  changed_when: false

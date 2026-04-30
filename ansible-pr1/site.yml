@@ -1,0 +1,67 @@
+---
+- name: Prepare all instances (Common + Docker)
+  hosts: all
+  become: yes
+  vars_files:
+    - ../vault.yml
+    - group_vars/all.yml
+  roles:
+    - common
+    - docker
+
+# ==================== Simple Services ====================
+
+- name: Deploy Vote + Result
+  hosts: role_vote_result # ← changed - to _
+  become: yes
+  vars_files:
+    - ../vault.yml
+    - group_vars/all.yml
+  vars:
+    services_to_deploy:
+      - vote
+      - result
+  roles:
+    - deploy
+
+- name: Deploy Worker + Redis
+  hosts: role_redis_worker # ← changed - to _
+  become: yes
+  vars_files:
+    - ../vault.yml
+    - group_vars/all.yml
+  vars:
+    services_to_deploy:
+      - worker
+      - redis
+  roles:
+    - deploy
+
+# ==================== PostgreSQL ====================
+
+- name: Deploy PostgreSQL Primary
+  hosts: role_postgres_primary # ← changed - to _
+  become: yes
+  vars_files:
+    - ../vault.yml
+    - group_vars/all.yml
+  vars:
+    postgres_replication_role: primary
+    services_to_deploy:
+      - db
+  roles:
+    - deploy
+
+- name: Deploy PostgreSQL Standby
+  hosts: role_postgres_standby # ← changed - to _
+  become: yes
+  vars_files:
+    - ../vault.yml
+    - group_vars/all.yml
+  vars:
+    postgres_replication_role: standby
+    postgres_primary_host: "{{ groups['role_postgres-primary'][0] | default('') }}"
+    services_to_deploy:
+      - db
+  roles:
+    - deploy
