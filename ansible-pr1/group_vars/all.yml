@@ -19,7 +19,6 @@ docker_password: "sufjyc-tubjir-maWme4"
 # ansible-playbook test-vault.yml --ask-vault-pass -v
 # Common settings
 app_dir: "/opt/vote-app"
-docker_compose_dir: "{{ app_dir }}"
 
 aws_region: "us-east-2"
 
