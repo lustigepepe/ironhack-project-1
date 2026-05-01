@@ -10,6 +10,10 @@ data "aws_ami" "ubuntu" {
   }
 }
 
+data "aws_region" "current" {
+  provider = aws.use1
+}
+
 # ==================== VPC & IGW ====================
 resource "aws_vpc" "main" {
   provider = aws.use1
@@ -131,7 +135,94 @@ resource "aws_route_table_association" "db" {
   route_table_id = aws_route_table.private.id
 }
 
-# ==================== SSM IAM ROLE ====================
+# ==================== S3 GATEWAY VPC ENDPOINT ====================
+
+resource "aws_vpc_endpoint" "s3" {
+  provider          = aws.use1
+  vpc_id            = aws_vpc.main.id
+  service_name      = "com.amazonaws.${data.aws_region.current.id}.s3"
+  vpc_endpoint_type = "Gateway"
+
+  route_table_ids = [
+    aws_route_table.public.id,
+    aws_route_table.private.id
+  ]
+
+
+  tags = {
+    Name      = "${var.project_name}-s3-endpoint"
+    Purpose   = "Access S3 privately from VPC"
+    ManagedBy = "Terraform"
+  }
+}
+
+# ==================== SSM INTERFACE ENDPOINTS (for Private Subnets) ====================
+# Security Group for VPC Endpoints
+resource "aws_security_group" "vpc_endpoint_sg" {
+  provider = aws.use1
+  name     = "${var.project_name}-vpc-endpoints-sg"
+  vpc_id   = aws_vpc.main.id
+
+  # === Allow HTTP (80) and HTTPS (443) from within the VPC ===
+  ingress {
+    description = "Allow HTTP from VPC"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.main.cidr_block]
+  }
+
+  ingress {
+    description = "Allow HTTPS from VPC"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.main.cidr_block]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = { Name = "${var.project_name}-vpc-endpoint-sg" }
+}
+
+# SSM Interface Endpoints
+locals {
+  ssm_endpoints = [
+    "com.amazonaws.${data.aws_region.current.id}.ssm",
+    "com.amazonaws.${data.aws_region.current.id}.ssmmessages",
+    "com.amazonaws.${data.aws_region.current.id}.ec2messages"
+  ]
+}
+
+resource "aws_vpc_endpoint" "ssm" {
+  for_each = toset(local.ssm_endpoints)
+
+  provider            = aws.use1
+  vpc_id              = aws_vpc.main.id
+  service_name        = each.value
+  vpc_endpoint_type   = "Interface"
+  private_dns_enabled = true
+
+
+  subnet_ids = [
+    for az in var.azs : aws_subnet.private[az].id
+  ]
+  security_group_ids = [aws_security_group.vpc_endpoint_sg.id]
+
+  tags = {
+    Name      = "${var.project_name}-${split(".", each.value)[3]}-endpoint"
+    Purpose   = "SSM for private subnets"
+    ManagedBy = "Terraform"
+  }
+}
+
+# ==================== SSM IAM ROLE + S3 PERMISSIONS ====================
+
 resource "aws_iam_role" "ssm_role" {
   provider = aws.use1
   name     = "${var.project_name}-ssm-role"
@@ -146,22 +237,47 @@ resource "aws_iam_role" "ssm_role" {
   })
 }
 
+# SSM Core Policy (required for Session Manager, Run Command, State Manager, etc.)
 resource "aws_iam_role_policy_attachment" "ssm_core" {
   provider   = aws.use1
   role       = aws_iam_role.ssm_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
-resource "aws_iam_instance_profile" "ssm_profile" {
+# Custom S3 Policy - Allows access to your Ansible bucket
+resource "aws_iam_policy" "ansible_ssm_bucket_access" {
   provider = aws.use1
-  name     = "${var.project_name}-ssm-profile"
-  role     = aws_iam_role.ssm_role.name
+  name     = "${var.project_name}-ansible-ssm-bucket-access"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = ["s3:ListBucket"]
+        Resource = [aws_s3_bucket.ansible_ssm.arn]
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["s3:GetObject", "s3:PutObject"]
+        Resource = ["${aws_s3_bucket.ansible_ssm.arn}/*"]
+      }
+    ]
+  })
 }
 
+# Attach S3 policy to the role
 resource "aws_iam_role_policy_attachment" "ansible_ssm_access" {
   provider   = aws.use1
   role       = aws_iam_role.ssm_role.name
   policy_arn = aws_iam_policy.ansible_ssm_bucket_access.arn
+}
+
+# Instance Profile - Used by ALL your EC2 instances
+resource "aws_iam_instance_profile" "ssm_profile" {
+  provider = aws.use1
+  name     = "${var.project_name}-ssm-profile"
+  role     = aws_iam_role.ssm_role.name
 }
 
 
@@ -188,31 +304,6 @@ resource "aws_s3_bucket_public_access_block" "ansible_ssm" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
-
-# ==================== IAM POLICY FOR ANSIBLE SSM BUCKET ====================
-resource "aws_iam_policy" "ansible_ssm_bucket_access" {
-  provider = aws.use1
-  name     = "${var.project_name}-ansible-ssm-bucket-access"
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Action = [
-          "s3:GetObject",
-          "s3:PutObject",
-          "s3:ListBucket"
-        ]
-        Resource = [
-          aws_s3_bucket.ansible_ssm.arn,
-          "${aws_s3_bucket.ansible_ssm.arn}/*"
-        ]
-      }
-    ]
-  })
-}
-
 
 # ==================== EC2 INSTANCES ====================
 
