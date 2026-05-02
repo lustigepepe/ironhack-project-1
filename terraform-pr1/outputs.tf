@@ -40,7 +40,19 @@ output "postgres_standby_id" {
   value = aws_instance.postgres_standby.id
 }
 
-# ==================== SSM CONNECTION COMMANDS (Most Useful) ====================
+# ==================== LOAD BALANCER ====================
+
+output "load_balancer_dns" {
+  description = "Load Balancer DNS name"
+  value       = aws_lb.main.dns_name
+}
+
+output "vote_app_url" {
+  description = "Direct URL to access your Vote app via Load Balancer"
+  value       = "http://${aws_lb.main.dns_name}"
+}
+
+# ==================== SSM CONNECTION COMMANDS ====================
 
 output "ssm_commands" {
   description = "Ready-to-copy SSM connection commands"
@@ -54,7 +66,7 @@ output "ssm_commands" {
   }
 }
 
-# ==================== PRIVATE IPs (Helpful for internal communication) ====================
+# ==================== PRIVATE IPs ====================
 
 output "private_ips" {
   description = "Private IP addresses of all instances"

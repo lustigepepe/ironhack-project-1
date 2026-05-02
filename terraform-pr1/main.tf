@@ -304,30 +304,114 @@ resource "aws_s3_bucket_public_access_block" "ansible_ssm" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
+# ==================== SECURITY GROUPS FOR APPS ====================
 
+# Public Apps (Vote + Result)
+resource "aws_security_group" "public_app_sg" {
+  provider = aws.use1
+  name     = "${var.project_name}-public-app-sg"
+  vpc_id   = aws_vpc.main.id
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Vote App"
+  }
+
+  ingress {
+    from_port   = 8081
+    to_port     = 8081
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Result App"
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = { Name = "${var.project_name}-public-app-sg" }
+}
+
+# Private Apps (Worker + Redis)
+resource "aws_security_group" "private_app_sg" {
+  provider = aws.use1
+  name     = "${var.project_name}-private-app-sg"
+  vpc_id   = aws_vpc.main.id
+
+  ingress {
+    from_port       = 6379
+    to_port         = 6379
+    protocol        = "tcp"
+    security_groups = [aws_security_group.public_app_sg.id]
+    description     = "Allow Vote/Result to Redis"
+  }
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = [aws_vpc.main.cidr_block]
+    description = "Allow internal private traffic"
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = { Name = "${var.project_name}-private-app-sg" }
+}
+
+# PostgreSQL
+resource "aws_security_group" "db_sg" {
+  provider = aws.use1
+  name     = "${var.project_name}-db-sg"
+  vpc_id   = aws_vpc.main.id
+
+  ingress {
+    from_port       = 5432
+    to_port         = 5432
+    protocol        = "tcp"
+    security_groups = [aws_security_group.public_app_sg.id, aws_security_group.private_app_sg.id]
+    description     = "Allow apps to Postgres"
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = { Name = "${var.project_name}-db-sg" }
+}
 # ==================== EC2 INSTANCES ====================
 
-# Vote + Result (Public Subnets)
+# Vote + Result (Public)
 resource "aws_instance" "vote" {
   provider = aws.use1
   for_each = aws_subnet.public
 
-  ami                  = data.aws_ami.ubuntu.id
-  instance_type        = var.instance_type
-  subnet_id            = each.value.id
-  iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = var.instance_type
+  subnet_id              = each.value.id
+  iam_instance_profile   = aws_iam_instance_profile.ssm_profile.name
+  vpc_security_group_ids = [aws_security_group.public_app_sg.id]
 
   user_data = <<-EOF
               #!/bin/bash
               sudo apt-get update -y
-              # Ensure SSM Agent is installed and running via Snap
-              sudo snap install amazon-ssm-agent --classic || echo "SSM Agent already installed"
-
-              # Start and enable the agent
+              sudo snap install amazon-ssm-agent --classic || true
               sudo snap enable amazon-ssm-agent
               sudo snap start amazon-ssm-agent
               EOF
-
 
   tags = {
     Name    = "${var.project_name}-vote-${each.key}"
@@ -341,18 +425,16 @@ resource "aws_instance" "worker" {
   provider = aws.use1
   for_each = aws_subnet.private
 
-  ami                  = data.aws_ami.ubuntu.id
-  instance_type        = var.instance_type
-  subnet_id            = each.value.id
-  iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = var.instance_type
+  subnet_id              = each.value.id
+  iam_instance_profile   = aws_iam_instance_profile.ssm_profile.name
+  vpc_security_group_ids = [aws_security_group.private_app_sg.id]
 
   user_data = <<-EOF
               #!/bin/bash
               sudo apt-get update -y
-              # Ensure SSM Agent is installed and running via Snap
-              sudo snap install amazon-ssm-agent --classic || echo "SSM Agent already installed"
-
-              # Start and enable the agent
+              sudo snap install amazon-ssm-agent --classic || true
               sudo snap enable amazon-ssm-agent
               sudo snap start amazon-ssm-agent
               EOF
@@ -364,23 +446,20 @@ resource "aws_instance" "worker" {
   }
 }
 
-# PostgreSQL Primary (AZ1)
+# PostgreSQL Primary
 resource "aws_instance" "postgres_primary" {
   provider = aws.use1
 
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
-  subnet_id     = aws_subnet.db[var.azs[0]].id # Explicit AZ1
-
-  iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = var.instance_type
+  subnet_id              = aws_subnet.db[var.azs[0]].id
+  iam_instance_profile   = aws_iam_instance_profile.ssm_profile.name
+  vpc_security_group_ids = [aws_security_group.db_sg.id]
 
   user_data = <<-EOF
               #!/bin/bash
               sudo apt-get update -y
-              # Ensure SSM Agent is installed and running via Snap
-              sudo snap install amazon-ssm-agent --classic || echo "SSM Agent already installed"
-
-              # Start and enable the agent
+              sudo snap install amazon-ssm-agent --classic || true
               sudo snap enable amazon-ssm-agent
               sudo snap start amazon-ssm-agent
               EOF
@@ -392,23 +471,20 @@ resource "aws_instance" "postgres_primary" {
   }
 }
 
-# PostgreSQL Standby (AZ2)
+# PostgreSQL Standby
 resource "aws_instance" "postgres_standby" {
   provider = aws.use1
 
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
-  subnet_id     = aws_subnet.db[var.azs[1]].id # Explicit AZ2
-
-  iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = var.instance_type
+  subnet_id              = aws_subnet.db[var.azs[1]].id
+  iam_instance_profile   = aws_iam_instance_profile.ssm_profile.name
+  vpc_security_group_ids = [aws_security_group.db_sg.id]
 
   user_data = <<-EOF
               #!/bin/bash
               sudo apt-get update -y
-              # Ensure SSM Agent is installed and running via Snap
-              sudo snap install amazon-ssm-agent --classic || echo "SSM Agent already installed"
-
-              # Start and enable the agent
+              sudo snap install amazon-ssm-agent --classic || true
               sudo snap enable amazon-ssm-agent
               sudo snap start amazon-ssm-agent
               EOF
@@ -418,4 +494,82 @@ resource "aws_instance" "postgres_standby" {
     Role    = "postgres-standby"
     Project = var.project_name
   }
+}
+# ==================== SECURITY GROUP FOR LOAD BALANCER ====================
+resource "aws_security_group" "alb_sg" {
+  provider = aws.use1
+  name     = "${var.project_name}-alb-sg"
+  vpc_id   = aws_vpc.main.id
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow HTTP from anywhere"
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = { Name = "${var.project_name}-alb-sg" }
+}
+
+# ==================== APPLICATION LOAD BALANCER ====================
+resource "aws_lb" "main" {
+  provider           = aws.use1
+  name               = "${var.project_name}-alb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.alb_sg.id]
+  subnets            = [for s in aws_subnet.public : s.id]
+
+  tags = { Name = "${var.project_name}-alb" }
+}
+
+# ==================== TARGET GROUP (for Docker port 8080) ====================
+resource "aws_lb_target_group" "vote" {
+  provider    = aws.use1
+  name        = "${var.project_name}-vote-tg"
+  port        = 8080 # ← Changed for Docker Compose
+  protocol    = "HTTP"
+  vpc_id      = aws_vpc.main.id
+  target_type = "instance"
+
+  health_check {
+    path                = "/"
+    healthy_threshold   = 2
+    unhealthy_threshold = 10
+    timeout             = 5
+    interval            = 10
+    matcher             = "200"
+  }
+
+  tags = { Name = "${var.project_name}-vote-tg" }
+}
+
+# ==================== LISTENER (HTTP) ====================
+resource "aws_lb_listener" "http" {
+  provider          = aws.use1
+  load_balancer_arn = aws_lb.main.arn
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.vote.arn
+  }
+}
+
+# ==================== ATTACH VOTE INSTANCES ====================
+resource "aws_lb_target_group_attachment" "vote" {
+  for_each         = aws_instance.vote
+  provider         = aws.use1
+  target_group_arn = aws_lb_target_group.vote.arn
+  target_id        = each.value.id
+  port             = 8080
 }
