@@ -14,15 +14,9 @@
       - apt-transport-https
     state: present
 
-- name: Create keyrings directory
-  file:
-    path: /etc/apt/keyrings
-    state: directory
-    mode: "0755"
-
 - name: Create application directory
   file:
-    path: "{{ docker_compose_dir }}"
+    path: "{{ app_dir }}"
     state: directory
     owner: ubuntu
     group: ubuntu

@@ -12,7 +12,7 @@
 # ==================== Simple Services ====================
 
 - name: Deploy Vote + Result
-  hosts: role_vote_result # ← changed - to _
+  hosts: role_vote-result # ← changed - to _
   become: yes
   vars_files:
     - ../vault.yml
@@ -25,7 +25,7 @@
     - deploy
 
 - name: Deploy Worker + Redis
-  hosts: role_redis_worker # ← changed - to _
+  hosts: role_redis-worker # ← changed - to _
   become: yes
   vars_files:
     - ../vault.yml
@@ -40,7 +40,7 @@
 # ==================== PostgreSQL ====================
 
 - name: Deploy PostgreSQL Primary
-  hosts: role_postgres_primary # ← changed - to _
+  hosts: role_postgres-primary # ← changed - to _
   become: yes
   vars_files:
     - ../vault.yml
@@ -53,7 +53,7 @@
     - deploy
 
 - name: Deploy PostgreSQL Standby
-  hosts: role_postgres_standby # ← changed - to _
+  hosts: role_postgres-standby # ← changed - to _
   become: yes
   vars_files:
     - ../vault.yml
