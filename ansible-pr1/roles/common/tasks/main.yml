@@ -1,0 +1,33 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install minimal essential packages
+  apt:
+    name:
+      - curl
+      - git
+      - unzip
+      - ca-certificates
+      - gnupg
+      - lsb-release
+      - apt-transport-https
+    state: present
+
+- name: Create keyrings directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+
+- name: Set timezone to UTC
+  timezone:
+    name: UTC
+
+- name: Remove unnecessary packages and clean cache
+  apt:
+    autoremove: yes
+    autoclean: yes
+    purge: yes

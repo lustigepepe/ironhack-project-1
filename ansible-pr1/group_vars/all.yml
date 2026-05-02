@@ -1,0 +1,28 @@
+ansible_host: instance_id
+# ansible_connection: community.aws.aws_ssm
+ansible_connection: amazon.aws.aws_ssm
+ansible_user: ubuntu
+ansible_aws_ssm_region: us-east-2
+ansible_aws_ssm_bucket_name: "vote-app-hagen-ansible-ssm-bucket"
+ansible_aws_ssm_instance_id: "{{ instance_id }}"
+ansible_aws_ssm_timeout: 120
+# Registry settings (use ansible-vault if private)
+docker_registry_url: "https://index.docker.io/v1/" # ← Change to this
+
+# "https://index.docker.io/v1/"
+# docker_username: "username" 
+# docker_password: "password" 
+
+docker_username: "0098765"
+docker_password: "sufjyc-tubjir-maWme4"
+# Vault Password: sufjyc-tubjir-lLLlL
+# ansible-playbook test-vault.yml --ask-vault-pass -v
+# Common settings
+app_dir: "/opt/vote-app"
+
+aws_region: "us-east-2"
+
+# Registry images
+vote_image: "0098765/vote:latest"
+result_image: "0098765/result:latest"
+worker_image: "0098765/worker:latest"
