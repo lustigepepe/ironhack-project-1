@@ -73,3 +73,5 @@ hosts
 
 # Terraform/Ansible temp files
 .terraform.lock.hcl
+.DS_Store
+**/.DS_Store

@@ -247,7 +247,7 @@ resource "aws_iam_role_policy_attachment" "ssm_core" {
 # Custom S3 Policy - Allows access to your Ansible bucket
 resource "aws_iam_policy" "ansible_ssm_bucket_access" {
   provider = aws.use1
-  name     = "${var.project_name}-ansible-ssm-bucket-access"
+  name     = "${var.project_name}-ansible-ssm-bucket"
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -284,7 +284,7 @@ resource "aws_iam_instance_profile" "ssm_profile" {
 # ==================== ANSIBLE SSM S3 BUCKET ====================
 resource "aws_s3_bucket" "ansible_ssm" {
   provider      = aws.use1
-  bucket        = "${var.project_name}-ansible-ssm-bucket-access"
+  bucket        = "${var.project_name}-ansible-ssm-bucket"
   force_destroy = true
   tags = {
     Name      = "${var.project_name}-ansible-ssm"
