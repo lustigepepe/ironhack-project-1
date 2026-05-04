@@ -1,0 +1,1354 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2869
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fmodern\fcharset0 Courier;
+\f3\fnil\fcharset0 Menlo-Regular;\f4\fnil\fcharset0 Menlo-Bold;\f5\fnil\fcharset0 Menlo-Italic;
+\f6\fnil\fcharset0 Menlo-BoldItalic;\f7\fmodern\fcharset0 Courier-Bold;\f8\fnil\fcharset0 LucidaGrande;
+\f9\fmodern\fcharset0 Courier-Oblique;\f10\fnil\fcharset0 LucidaGrande-Bold;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red144\green1\blue18;\red255\green255\blue255;
+\red13\green16\blue19;\red50\green94\blue238;\red249\green249\blue249;\red42\green44\blue51;\red134\green19\blue62;
+\red107\green0\blue1;\red251\green2\blue7;\red66\green147\blue62;\red167\green87\blue5;\red143\green144\blue150;
+\red255\green238\blue149;\red21\green102\blue47;\red144\green1\blue18;\red147\green0\blue147;\red133\green0\blue175;
+\red219\green63\blue57;\red0\green0\blue255;\red252\green73\blue64;\red0\green0\blue152;\red134\green19\blue62;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c63922\c8235\c8235;\cssrgb\c100000\c100000\c100000;
+\cssrgb\c5882\c7843\c9804;\cssrgb\c25098\c47059\c94902;\cssrgb\c98039\c98039\c98039;\cssrgb\c21961\c22745\c25882;\cssrgb\c60282\c14051\c30968;
+\cssrgb\c50196\c0\c0;\cssrgb\c100000\c14913\c0;\cssrgb\c31373\c63137\c30980;\cssrgb\c71765\c41961\c392;\cssrgb\c62745\c63137\c65490;
+\cssrgb\c100000\c94118\c64706;\cssrgb\c7451\c46667\c23922;\cssrgb\c63922\c8235\c8235;\cssrgb\c65098\c14902\c64314;\cssrgb\c59982\c16236\c74118;
+\cssrgb\c89412\c33725\c28627;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c38374\c31601;\cssrgb\c0\c0\c66135;\cssrgb\c60282\c14051\c30968;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid1\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid101\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid301\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid302\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid4}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh14480\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs24 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Status
+\f1\b0 : 
+\f2\fs26\fsmilli13333 Success
+\f1\fs24 \
+Docker role completed successfully (installation + service + user group).\
+The 
+\f2\fs26\fsmilli13333 common
+\f1\fs24  + 
+\f2\fs26\fsmilli13333 docker
+\f1\fs24  parts are working.\
+The later plays (
+\f2\fs26\fsmilli13333 Deploy Vote + Result
+\f1\fs24 , 
+\f2\fs26\fsmilli13333 Deploy Worker + Redis
+\f1\fs24 , etc.) were skipped \'97 this is 
+\f0\b normal
+\f1\b0  when testing locally with 
+\f2\fs26\fsmilli13333 -i "localhost,"
+\f1\fs24 .\
+\pard\pardeftab720\partightenfactor0
+
+\f3\fs28 \cf3 \cb4 \outl0\strokewidth0 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs24 \cf0 \cb1 \outl0\strokewidth0 \strokec2 Deploy role is still skipped
+\f1\b0  (
+\f2\fs26\fsmilli13333 no hosts matched
+\f1\fs24  for 
+\f2\fs26\fsmilli13333 vote-result
+\f1\fs24 , 
+\f2\fs26\fsmilli13333 redis-worker
+\f1\fs24 , etc.).\
+No image pulling happened because the 
+\f2\fs26\fsmilli13333 docker_compose_v2
+\f1\fs24  task never executed.\
+\pard\pardeftab720\partightenfactor0
+
+\f3\fs28 \cf3 \cb4 \outl0\strokewidth0 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf5 echo "=== 1. Current Role ==="\
+TOKEN=$(curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")\
+echo "Role: $(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/tags/instance/Role)"\
+\
+echo -e "\\n=== 2. App Directory ==="\
+ls -la /opt/vote-app/\
+\
+echo -e "\\n=== 3. Try Manual Pull (this will show real error) ==="\
+cd /opt/vote-app\
+docker compose pull --no-cache\
+NOW
+\fs28 \cf3 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf5 # Reload groups properly\
+sudo su - ubuntu\
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf6 \cb7 docker\cf8  pull 0098765/voting-app:latest\
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf5 \cb4 \
+\
+echo "============================================"\
+echo "=== Instance Information ==="\
+TOKEN=$(curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")\
+echo "Instance ID : $(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/instance-id)"\
+echo "Role Tag    : $(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/tags/instance/Role 2>/dev/null || echo 'No Role tag')"\
+echo "============================================"\
+\
+echo -e "\\n=== Running Containers ==="\
+docker ps -a --format "table \{\{.Names\}\}\\t\{\{.Image\}\}\\t\{\{.Status\}\}\\t\{\{.Ports\}\}"\
+\
+echo -e "\\n=== Docker Compose Projects ==="\
+docker compose ls\
+\
+echo -e "\\n=== Current Directory ==="\
+pwd && ls -la\
+\pard\pardeftab720\partightenfactor0
+
+\fs36 \cf5 \'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95
+\fs26\fsmilli13333 \
+aws ec2 modify-instance-metadata-options \\\
+  --instance-id i-017ec50fd09c9fcba \\\
+  --instance-metadata-tags enabled \\\
+  --region us-east-2\
+\
+TOKEN=$(curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")\
+echo "Role: $(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/tags/instance/Role)"\
+
+\fs36 \'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95\'95
+\fs26\fsmilli13333 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs36 \cf9 \cb1 \outl0\strokewidth0 \strokec2 Even though you have tags in AWS Console, the Instance Metadata Service (IMDS) hasn't picked them up yet.\
+\pard\pardeftab720\partightenfactor0
+
+\f3\b0\fs26\fsmilli13333 \cf5 \cb4 \outl0\strokewidth0 \
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf3 \
+\pard\pardeftab720\partightenfactor0
+\cf3 vote-app-hagen-ansible-ssm-bucket\cf0 \cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 vote-app-hagen\cf3 -ansible-ssm"\
+\pard\pardeftab720\partightenfactor0
+\cf10 ansible_aws_ssm_bucket_name\cf0 : \cf3 "vote-app-terraform-ansible-ssm"\cf0 \cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf5 \cb4 LATEST=$(sudo find /var/lib/amazon/ssm -type d -name downloads -exec ls -dt \{\} + | head -1 2>/dev/null) && \\\
+echo "Using folder: $LATEST" && \\\
+sudo bash 
+\f4\b\fs36 \cf11 -c
+\f3\b0\fs26\fsmilli13333 \cf5  "\
+  cd '$LATEST' && \
+  ls -la && \
+  echo '=== Starting Ansible Debug ===' && \
+  ansible-playbook -i 'localhost,' -c local \\\
+    -e 'ansible_connection=local ansible_user=ubuntu' \\\
+    -vvv site.yml 2>&1 | tee /tmp/ansible-debug.log\
+" && \\\
+echo "=== Full debug log saved to /tmp/ansible-debug.log ===" && \\\
+cat /tmp/ansible-debug.log | tail -n 100
+\fs28 \cf0 \cb1 \
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs36 \cf0  \'97 \'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8 \'97
+\fs26\fsmilli13333 \cb4 \
+Bucketname 
+\f1\fs24 \cb1 "vote-app-hagen-ansible-ssm"\
+vote-app-terraform-ansible-ssm\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs48 \cf0 <<Generell
+\f1\b0\fs24 \
+\pard\pardeftab720\partightenfactor0
+
+\f3\fs26 \cf6 \cb7 ????????????????
+\fs26\fsmilli13333 \cf0 \cb4 \
+
+\fs26 \cf6 \cb7 ASSOC_ID=$(aws ssm list-associations \cf8 \cb7 \\\cf6 \cb7 \
+  --region us-east-2 \cf8 \cb7 \\\cf6 \cb7 \
+  --query \cf12 "Associations[?Name=='AWS-ApplyAnsiblePlaybooks'].AssociationId"\cf6  \cf8 \cb7 \\\cf6 \cb7 \
+  --output text)\cf8 \cb7 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf13 \cb7 echo\cf8 \cb7  \cf6 \cb7 $ASSOC_ID\
+????????????????
+\fs26\fsmilli13333 \cf0 \cb4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+
+\f5\i \cf14 \cb7 # 
+\f6\b \cf2 Upload
+\f5\b0 \cf14  the zip file\
+\pard\pardeftab720\partightenfactor0
+
+\f3\i0 \cf6 \cb7 BUCKET_NAME=\cf12 \cb7 "
+\fs28 \cf3 \cb4 vote-app-hagen-ansible-ssm-bucket
+\fs26 \cf12 \cb7 "\cf8 \cb7 \
+aws s3 \cf6 \cb7 cp\cf8 \cb7  /tmp/ansible-pr1.zip s3://\cf6 \cb7 $BUCKET_NAME\cf8 \cb7 /ansible-pr1.zip \\\
+  --region us-east-2\cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+\cf8 \
+========================================
+\fs26\fsmilli13333 \cf0 \cb4 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f0\b\fs24 \cf0 \cb1 {\listtext	1	}Check if the file is already in the bucket
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f3\fs26 \cf6 \cb7 BUCKET_NAME=\cf12 "
+\fs28 \cf3 \cb4 vote-app-hagen-ansible-ssm-bucket
+\fs26 \cf12 \cb7 "\cf8 \cb7 \
+aws s3 \cf6 \cb7 ls\cf8 \cb7  s3://\cf6 \cb7 $BUCKET_NAME\cf8 \cb7 /
+\fs26\fsmilli13333 \cf0 \cb4 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 https://vote-app-hagen-ansible-ssm-bucket.s3.amazonaws.com/ansible-pr1.zip
+\f3\fs26\fsmilli13333 \cf0 \cb4 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\pardeftab720\partightenfactor0
+\cf5 BUCKET_NAME="vote-app-hagen-ansible-ssm-bucket"\
+aws s3 ls s3://$BUCKET_NAME/ --recursive --human-readable\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\f4\b\fs28 \cf0 Delete
+\f3\b0\fs26\fsmilli13333 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf5 BUCKET_NAME="vote-app-hagen-ansible-ssm-bucket"\
+aws s3 rm s3://$BUCKET_NAME --recursive\
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4.  \'97\'97\'97\'97  \'97\'97\'97-\
+
+\f1\fs24 \cb1 Run this to confirm the URL:
+\f3\fs26\fsmilli13333 \cb4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf6 \cb7 BUCKET_NAME=\cf12 "
+\fs28 \cf3 \cb4 vote-app-hagen-ansible-ssm-bucket
+\fs26 \cf12 \cb7 "\cf8 \cb7 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 i-017ec50fd09c9fcba
+\f3\fs26 \cf8 \cb7 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf17 \cb4 \outl0\strokewidth0 \strokec17 vote-app-hagen-vote-\cf3 \cb4 \outl0\strokewidth0 us-east-2a\cf0 \cb1 \outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \outl0\strokewidth0 vote-app-hagen-vote-us-east-2b\cf0 \cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf17 \cb4 \outl0\strokewidth0 \strokec17 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \outl0\strokewidth0 vote-app-hagen-\cf17 \cb4 \outl0\strokewidth0 \strokec17 worker\cf3 \cb4 \outl0\strokewidth0 -us-east-2a\cf0 \cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 vote-app-hagen-\cf17 \cb4 \outl0\strokewidth0 \strokec17 worker\cf3 \cb4 \outl0\strokewidth0 -us-east-2b\cf3 \
+\
+vote-app-hagen-\cf17 \cb4 \outl0\strokewidth0 \strokec17 postgres-standby\cf3 \cb4 \outl0\strokewidth0 \
+vote-app-hagen-\cf17 \cb4 \outl0\strokewidth0 \strokec17 postgres-primary\cf0 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf17 \cb4 \strokec17 \
+\pard\pardeftab720\partightenfactor0
+\cf17 \
+us-east-2a"\cf0 \cb4 \strokec2 , \cf17 \cb4 \strokec17 "us-east-2b\cf0 \cb1 \strokec2 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf8 \cb7 \outl0\strokewidth0 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf13 \cb7 echo\cf8 \cb7  \cf12 \cb7 "https://\cf6 $BUCKET_NAME\cf12 .s3.amazonaws.com/ansible-pr1.zip"
+\fs26\fsmilli13333 \cf0 \cb4 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 BUCKET_NAME="vote-app-hagen-ansible-ssm-bucket"\
+\
+aws ssm create-association \\\
+  --name "AWS-ApplyAnsiblePlaybooks" \\\
+  --association-name "Ansible-Weekly" \\\
+  --targets '[\{"Key":"
+\f3\fs26 \cf12 \cb7 \expnd0\expndtw0\kerning0
+\CocoaLigature1 tag:Role
+\f2\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 ","Values":
+\f3\fs26 \cf12 \cb7 \expnd0\expndtw0\kerning0
+\CocoaLigature1 ["redis-worker","postgres-primary","vote-result","postgres-standby"]\}]
+\f2\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 ' \\\
+  --parameters '\{\
+    "SourceType": ["S3"],\
+    "SourceInfo": ["\{\\"path\\":\\"https://'"$BUCKET_NAME"'.s3.amazonaws.com/ansible-pr1.zip\\"\}"],\
+    "InstallDependencies": ["True"],\
+    "PlaybookFile": ["site.yml"],\
+    "Verbose": ["-v"],\
+    "TimeoutSeconds": ["3600"],\
+    "ExtraVariables": ["ansible_connection=local ansible_user=ubuntu
+\f3\fs26 \cf12 \cb7 \expnd0\expndtw0\kerning0
+\CocoaLigature1 "
+\f2\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 ]\
+  \}' \\\
+  --schedule-expression "cron(0 2 ? * SUN *)" \\\
+  --region us-east-2
+\f3\fs26 \cf8 \cb7 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf8 \
+\
+\{\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth4480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1600\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth9759\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f0\b\fs24 \cf0 \cb1 \outl0\strokewidth0 \strokec2 Parameter\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Value\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Meaning\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth4480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1600\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth9759\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\b0\fs26\fsmilli13333 \cf0 ansible_connection=local
+\f1\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\fs26\fsmilli13333 \cf0 local
+\f1\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Very important: Tells Ansible to 
+\f0\b not
+\f1\b0  try SSH. Run commands locally on the instance (this is how SSM Ansible document works).\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth4480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth1600\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth9759\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\fs26\fsmilli13333 \cf0 ansible_user=ubuntu
+\f1\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\fs26\fsmilli13333 \cf0 ubuntu
+\f1\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Tells Ansible to run most tasks as the 
+\f2\fs26\fsmilli13333 ubuntu
+\f1\fs24  user (your normal EC2 user).\cell \lastrow\row
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs40 \cf0 \
+All instances in region:\
+\pard\pardeftab720\partightenfactor0
+
+\f3\b0\fs26 \cf8 \cb7 \outl0\strokewidth0 aws ec2 describe-instances \\\
+  --region us-east-2 \\\
+  --filters \cf12 \cb7 "Name=instance-state-name,Values=running"\cf8 \cb7  \\\
+  --query \cf12 \cb7 "Reservations[].Instances[].[InstanceId, Tags[?Key=='Name'].Value|[0], State.Name, Tags]"\cf8 \cb7  \\\
+  --output yaml\cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+\cf8 \
+\
+\}\
+\pard\pardeftab720\partightenfactor0
+\cf8 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf0 \cb4 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\pardeftab720\partightenfactor0
+
+\fs36 \cf0 Update:\
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+
+\fs24 \cf6 \cb7 ASSOC_ID=$(aws ssm list-associations \cf8 \\\cf6 \
+  --region us-east-2 \cf8 \\\cf6 \
+  --query \cf12 "Associations[?AssociationName=='Ansible-Weekly'].AssociationId"\cf6  \cf8 \\\cf6 \
+  --output text)\
+echo $ASSOC_ID\cf0 \cb4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf5 \cb4 aws ssm start-associations-once \\\
+  --association-id "$ASSOC_ID" \\\
+  --region us-east-2
+\fs26 \cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf0 \cb4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf18 \cb7 for\cf8 \cb7  \cf6 id\cf8  \cf18 \cb7 in\cf8 \cb7  \cf6 $(aws ssm list-associations \cf8 \\\cf6 \
+  --region us-east-2 \cf8 \\\cf6 \
+  --query \cf12 \cb7 "Associations[?AssociationName=='Ansible-Weekly'].AssociationId"\cf6 \cb7  \cf8 \\\cf6 \
+  --output text)\cf8 ; \cf18 \cb7 do\cf8 \cb7 \
+    \cf13 \cb7 echo\cf8 \cb7  \cf12 \cb7 "Triggering association: \cf6 \cb7 $id\cf12 \cb7 "\cf8 \cb7 \
+    aws ssm start-associations-once \\\
+      --association-id \cf12 \cb7 "\cf6 \cb7 $id\cf12 \cb7 "\cf8 \cb7  \\\
+      --region us-east-2\
+\cf18 \cb7 done
+\fs26\fsmilli13333 \cf0 \cb4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs24 \cf6 \cb7 ASSOC_ID=$(aws ssm list-associations \cf8 \\\cf6 \
+  --region us-east-2 \cf8 \\\cf6 \
+  --query \cf12 "Associations[?AssociationName=='Ansible-Weekly'].AssociationId"\cf6  \cf8 \\\cf6 \
+  --output text)\
+echo $ASSOC_ID
+\fs26\fsmilli13333 \cf0 \cb4 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\fs36 \cf8 \cb7 aws ssm \cf19 describe-association-executions\cf8  \\\
+  --association-id \cf12 \cb7 "\cf6 $ASSOC_ID\cf12 "\cf8 \cb7  \\\
+  --region us-east-2 \\\
+  --output yaml\cf0 \cb4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf6 \cb7 \uc0\u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \
+\
+sudo\cf8 \cb7  \cf6 \cb7 tail\cf8 \cb7  -n \cf13 \cb7 100\cf8 \cb7  /var/log/amazon/ssm/amazon-ssm-agent.log\
+\
+\cf6 \cb7 sudo\cf8 \cb7  \cf6 \cb7 tail\cf8 \cb7  -n \cf13 \cb7 50\cf8 \cb7  /var/log/amazon/ssm/errors.log\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 sudo\cf8  \cf6 tail\cf8  -n \cf13 \cb7 100\cf8 \cb7  /var/log/amazon/ssm/errors.log\
+\pard\pardeftab720\partightenfactor0
+\cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+
+\f5\i \cf14 \cb7 # Look for recent Ansible activity
+\f3\i0 \cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 sudo\cf8 \cb7  \cf6 \cb7 grep\cf8 \cb7  -i ansible /var/log/amazon/ssm/* \cf20 \cb7 2\cf6 >\cf8 \cb7 /dev/null \cf6 \cb7 |\cf8 \cb7  \cf6 \cb7 tail\cf8 \cb7  -n \cf13 \cb7 20\cf6 \
+\
+\'97\'97\'97\'97######\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 LATEST=$(sudo find /var/lib/amazon/ssm -type d -name downloads \cf8 \\\cf6 \
+         -exec stat -c \cf12 \cb7 '%Y %n'\cf6 \cb7  \cf8 \{\}\cf6  + \cf20 \cb7 2\cf6 \cb7 >/dev/null | \cf8 \\\cf6 \
+         sort -nr | head -1 | cut -d\cf12 \cb7 ' '\cf6 \cb7  -f2-)\cf8 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf13 \cb7 echo\cf8 \cb7  \cf12 \cb7 "=== MOST RECENT downloads directory ==="\cf8 \cb7 \
+\cf13 \cb7 echo\cf8 \cb7  \cf12 \cb7 "\cf6 \cb7 $LATEST\cf12 \cb7 "\cf8 \cb7 \
+\cf13 \cb7 echo\cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+\cf6 sudo\cf8  \cf6 ls\cf8  -la \cf12 \cb7 "\cf6 \cb7 $LATEST\cf12 \cb7 "\cf8 \cb7 /\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \'97\'97\'97\'97###\'97\'97###\
+sudo cat \cf12 \cb7 "\cf6 \cb7 $LATEST\cf12 \cb7 "/site.yml\cf6 \cb7 \
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf5 \cb4 unzip -l $
+\fs26 \cf6 \cb7 LATEST/
+\fs26\fsmilli13333 \cf5 \cb4 ansible-pr1.zip | head -20\
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf6 \cb7 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \
+zip\cf8 \cb7  -r /tmp/ansible-pr1.zip \\\
+  site.yml \\\
+  ansible.cfg \\\
+  inventory/ \\\
+  group_vars/ \\\
+  roles/ \\\
+  docker-compose.yml \\\
+  requirements.yml \\\
+  vault_pass.txt \\\
+  
+\fs28 \cf21 \cb4 vault.yml\cf0 \cb1  \\
+\fs26 \cf8 \cb7 \
+  \cf20 \cb7 2\cf6 >\cf8 \cb7 /dev/null \cf6 \cb7 ||\cf8 \cb7  \cf13 \cb7 true\cf6 \cb7 \
+\
+With collection:\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 zip\cf8  -r /tmp/ansible-pr1.zip \\\
+\pard\pardeftab720\partightenfactor0
+\cf8 \cb7   site.yml \\\
+  ansible.cfg \\\
+  inventory/ \\\
+  group_vars/ \\\
+  roles/ \\\
+  docker-compose.yml \\\
+  requirements.yml \\\
+  vault_pass.txt \\\
+  
+\fs28 \cf21 \cb4 vault.yml\cf0 \cb1  \\
+\fs26 \cf8 \cb7 \
+  collections/ \\\
+  \cf20 \cb7 2\cf6 >\cf8 \cb7 /dev/null \cf6 \cb7 ||\cf8 \cb7  \cf13 \cb7 true
+\fs26\fsmilli13333 \cf5 \cb4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf6 \cb7 \
+\
+\
+Because : 
+\f2\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 [Prepare all instances (Common + Docker)] *********************************\\n\\nTASK [Gathering Facts] *********************************************************\\nfatal: [localhost]: FAILED! =\\u003e \{\\"msg\\": \\"the connection plugin 'amazon.aws.aws_ssm' was not found\\"\}\\n\\nPLAY RECAP *********************************************************************\\nlocalhost   
+\f3\fs26 \cf6 \cb7 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf8 \cb7 \'f8
+\f4\b\fs28 \cf8 \cb7 \'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8
+\f3\b0\fs26 \cf8 \cb7 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf8 \cb7 aws ssm describe-association \\\
+  --association-id \cf12 \cb7 "52e51fd4-0cf8-49b1-9691-58dcdcb4cd04"\cf8 \cb7  \\\
+  --region us-east-2\cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+\cf8 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf8 \cb7 EXECU_ID=$(aws ssm describe-association-executions \\\
+  --association-id "$ASSOC_ID" \\\
+  --region us-east-2 \\\
+  --query "AssociationExecutions[0].ExecutionId" \\\
+  --output text)\
+\cf8 \cb7 echo $\cf8 \cb7 EXECU_ID\cf8 \cb7 \
+\cf8 \cb7 \
+
+\f4\b\fs36 \cf22 Targets:::\
+\pard\pardeftab720\partightenfactor0
+
+\f3\b0\fs24 \cf6 \cb7 ASSOC_ID=$(aws ssm list-associations \cf8 \\\cf6 \
+  --region us-east-2 \cf8 \\\cf6 \
+  --query \cf12 "Associations[?AssociationName=='Ansible-Weekly'].AssociationId"\cf6  \cf8 \\\cf6 \
+  --output text)\
+echo $ASSOC_ID
+\fs26 \cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+\cf8 \
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 LATEST_EXEC=$(aws ssm describe-association-executions \cf8 \cb7 \\\cf6 \cb7 \
+  --association-id \cf12 \cb7 "$ASSOC_ID"\cf6 \cb7  \cf8 \cb7 \\\cf6 \cb7 \
+  --region us-east-2 \cf8 \cb7 \\\cf6 \cb7 \
+  --query \cf12 \cb7 "AssociationExecutions[0].ExecutionId"\cf6 \cb7  \cf8 \cb7 \\\cf6 \cb7 \
+  --output text)\
+\cf13 echo\cf8 \cb7  \cf12 \cb7 "Latest Execution ID: \cf6 \cb7 $LATEST_EXEC\cf12 \cb7 "\
+\pard\pardeftab720\partightenfactor0
+\cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+\cf8 \cb7 aws ssm describe-association-execution-targets \\\
+  --association-id \cf12 \cb7 "\cf6 \cb7 $ASSOC_ID\cf12 \cb7 "\cf8 \cb7  \\\
+  --execution-id \cf12 \cb7 "\cf6 \cb7 $LATEST_EXEC\cf12 \cb7 "\cf8 \cb7  \\\
+  --region us-east-2 \\\
+  --output yaml\
+\
+vote-app-hagen-alb-1751553011.us-east-2.elb.amazonaws.com\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0  
+\f7\b \cf23 \cb16 i-017ec50fd09c9fcba
+\f2\b0 \cf15 \cb16  \
+vote-app-hagen-vote-us-east-2a
+\f3\fs26 \cf8 \cb7 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf8 \'f8
+\f4\b\fs28 \cf8 \cb7 \'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\
+
+\f3\b0\fs26 \cf8 \cb7 \
+
+\fs26\fsmilli13333 \cf5 \cb4 ASSOC_ID=$(aws ssm list-associations \\\
+  --region us-east-2 \\\
+  --query "Associations[?AssociationName=='Ansible-Weekly'].AssociationId" \\\
+  --output text)\
+\
+LATEST_EXEC=$(aws ssm describe-association-executions \\\
+  --association-id "$ASSOC_ID" \\\
+  --region us-east-2 \\\
+  --query "AssociationExecutions[0].ExecutionId" \\\
+  --output text)\
+\
+echo "=== Latest Execution: $LATEST_EXEC ==="\
+\
+aws ssm describe-association-execution-targets \\\
+  --association-id "$ASSOC_ID" \\\
+  --execution-id "$LATEST_EXEC" \\\
+  --region us-east-2 \\\
+  --output table \\\
+  --query "AssociationExecutionTargets[].\{\
+    InstanceId: ResourceId,\
+    Status: Status,\
+    DetailedStatus: DetailedStatus,\
+    LastExecutionDate: LastExecutionDate\
+  \}"
+\fs26 \cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+\cf8 \'f8
+\f4\b\fs28 \cf8 \cb7 \'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\'f8\
+\pard\pardeftab720\partightenfactor0
+
+\fs36 \cf8 Execute now::\
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf8 \'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\
+\pard\pardeftab720\partightenfactor0
+
+\fs36 \cf8 Delete:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\b0\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 aws ssm list-associations \\\
+  --region us-east-2 \\\
+  --output yaml\
+\pard\pardeftab720\partightenfactor0
+
+\f3\fs26 \cf8 \cb7 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+
+\fs24 \cf6 \cb7 ASSOC_ID=$(aws ssm list-associations \cf8 \\\cf6 \
+  --region us-east-2 \cf8 \\\cf6 \
+  --query \cf12 "Associations[?AssociationName=='Ansible-Weekly'].AssociationId"\cf6  \cf8 \\\cf6 \
+  --output text)\
+echo $ASSOC_ID
+\fs26 \cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+\cf8 aws ssm \cf24 \cb7 d
+\f4\b elete-association
+\f3\b0 \cf8 \cb7  \\\
+  --association-id \cf8 \cb7 "$ASSOC_ID"\cf8 \cb7 \\\
+  --region us-east-2\
+\
+\pard\pardeftab720\partightenfactor0
+\cf18 \cb7 for\cf8 \cb7  \cf6 assoc\cf8  \cf18 \cb7 in\cf8 \cb7  \cf6 $(aws ssm list-associations --region us-east-2 --query \cf12 \cb7 "Associations[].AssociationId"\cf6 \cb7  --output text)\cf8 ; \cf18 \cb7 do\cf8 \cb7 \
+  \cf13 \cb7 echo\cf8 \cb7  \cf12 \cb7 "Deleting association: \cf6 \cb7 $assoc\cf12 \cb7 "\cf8 \cb7 \
+  aws ssm delete-association --association-id \cf12 \cb7 "\cf6 \cb7 $assoc\cf12 \cb7 "\cf8 \cb7  --region us-east-2\
+\cf18 \cb7 done\cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+
+\f4\b \cf8 \cb7 \'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba\'ba
+\f3\b0 \cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf5 \cb4 ASSOC_ID=264633c1-215f-4f29-8d3a-1f88a92c39a0\
+\
+aws ssm delete-association \\\
+  --association-id "$ASSOC_ID" \\\
+  --region us-east-2
+\fs26 \cf6 \cb7 \
+\
+\
+ASSOC_ID=$(aws ssm list-associations \cf8 \cb7 \\\cf6 \cb7 \
+  --region us-east-2 \cf8 \cb7 \\\cf6 \cb7 \
+  --query \cf12 "Associations[?AssociationName=='Ansible-Weekly'].AssociationId"\cf6  \cf8 \cb7 \\\cf6 \cb7 \
+  --output text)\cf8 \cb7 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f4\b \cf8 \cb7 aws ssm start-associations-once
+\f3\b0 \cf8 \cb7  \\\
+  --association-id \cf12 \cb7 "\cf6 $ASSOC_ID\cf12 "\cf8 \cb7  \\\
+  --region us-east-2
+\f0\b\fs40 \cf0 \cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f3\b0\fs26 \cf6 \cb7 \uc0\u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \
+\pard\pardeftab720\partightenfactor0
+
+\f4\b\fs36 \cf6 debug:\cf0 \cb4 \
+\pard\pardeftab720\partightenfactor0
+
+\f3\b0\fs26 \cf6 \cb7 ASSOC_ID=$(aws ssm list-associations \cf8 \cb7 \\\cf6 \cb7 \
+  --region us-east-2 \cf8 \cb7 \\\cf6 \cb7 \
+  --query \cf12 "Associations[?AssociationName=='Ansible-Weekly'].AssociationId"\cf6  \cf8 \cb7 \\\cf6 \cb7 \
+  --output text)\cf8 \cb7 \
+aws ssm describe-association-executions \\\
+  --association-id \cf12 \cb7 "\cf6 $ASSOC_ID\cf12 "\cf8 \cb7  \\\
+  --region us-east-2 \\\
+  --output table
+\f0\b\fs40 \cf0 \cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f3\b0\fs26 \cf8 \cb7 \
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \uc0\u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \
+\uc0\u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \
+\pard\pardeftab720\partightenfactor0
+
+\f4\b\fs36 \cf6 debug:
+\f3\b0\fs26 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf5 \cb4 ASSOC_ID=$(aws ssm list-associations --region us-east-2 --query "Associations[?AssociationName=='Ansible-Weekly'].AssociationId" --output text)\
+\
+aws ssm describe-association-executions \\\
+  --association-id "$ASSOC_ID" \\\
+  --region us-east-2 \\\
+  --output json | jq '.AssociationExecutions[0]'
+\f2\fs26 \cf0 \cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f3 \cf6 \cb7 \
+\'97\'97\
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf5 \cb4 ASSOC_ID=264633c1-215f-4f29-8d3a-1f88a92c39a0\
+EXEC_ID=9a7bcb41-2c18-4fae-bc24-32ac78312135\
+\
+aws ssm list-command-invocations \\\
+  --command-id "$EXEC_ID" \\\
+  --details \\\
+  --region us-east-2 \\\
+  --output json\
+\
+\'97\'97\
+\pard\pardeftab720\partightenfactor0
+
+\fs48 \cf5 Taging > ::\
+All on Instances:\
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf5 aws ec2 describe-instances \\\
+  --region us-east-2 \\\
+  --query 'Reservations[*].Instances[*].\{\
+    InstanceId: InstanceId,\
+    Tags: Tags\
+  \}' \\\
+  --output yaml
+\fs48 \cf5 \
+\
+
+\fs26\fsmilli13333 \cf5 \'97\'97\'97\'97\'97\'97\
+association:\
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf6 \cb7 ASSOC_ID=$(aws ssm list-associations \cf8 \cb7 \\\cf6 \cb7 \
+  --region us-east-2 \cf8 \cb7 \\\cf6 \cb7 \
+  --query \cf12 "Associations[?AssociationName=='Ansible-Weekly'].AssociationId"\cf6  \cf8 \cb7 \\\cf6 \cb7 \
+  --output text)\
+echo $ASSOC_ID
+\fs26\fsmilli13333 \cf5 \cb4 \
+aws ssm describe-association \\\
+  --association-id "$ASSOC_ID" \\\
+  --region us-east-2 \\\
+  --query 'AssociationDescription.Targets' \\\
+  --output yaml\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 aws ssm describe-association \\\
+  --association-id "$ASSOC_ID" \\\
+  --region us-east-2 \\\
+  --query 'AssociationDescription.\{\
+    AssociationName: Name,\
+    Targets: Targets,\
+    Schedule: ScheduleExpression,\
+    LastExecution: LastExecutionDate\
+  \}' \\\
+  --output yaml\
+AssociationName: AWS-ApplyAnsiblePlaybooks\
+LastExecution: '2026-05-02T19:33:24.517000+02:00'\
+Schedule: cron(0 2 ? * SUN *)\
+Targets:\
+- Key: tag:Role\
+  Values:\
+  - worker
+\f3\fs26 \cf6 \cb7 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf6 \uc0\u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 ------------------------------------------------------------------------------------------\
+|                           DescribeAssociationExecutionTargets                          |\
++----------------+-----------------------+------------------------------------+----------+\
+| DetailedStatus |      InstanceId       |         LastExecutionDate          | Status   |\
++----------------+-----------------------+------------------------------------+----------+\
+|  
+\f7\b \cf23 \cb16 Failed
+\f2\b0 \cf15 \cb16         |  
+\f7\b \cf23 \cb16 i-017ec50fd09c9fcba
+\f2\b0 \cf15 \cb16   |  
+\f7\b \cf23 \cb16 2026-05-04T16:32:26.129000+02:00
+\f2\b0 \cf15 \cb16   |  
+\f7\b \cf23 \cb16 Failed
+\f2\b0 \cf15 \cb16   |\
+|  
+\f7\b \cf23 \cb16 Success
+\f2\b0 \cf15 \cb16        |  
+\f7\b \cf23 \cb16 i-0d1a278d47f7ea243
+\f2\b0 \cf15 \cb16   |  
+\f7\b \cf23 \cb16 2026-05-04T16:34:06.139000+02:00
+\f2\b0 \cf15 \cb16   |  
+\f7\b \cf23 \cb16 Success
+\f2\b0 \cf15 \cb16  |\
+|  
+\f7\b \cf23 \cb16 Success
+\f2\b0 \cf15 \cb16        |  
+\f7\b \cf23 \cb16 i-086d06ff3067b1e14
+\f2\b0 \cf15 \cb16   |  
+\f7\b \cf23 \cb16 2026-05-04T16:32:39.050000+02:00
+\f2\b0 \cf15 \cb16   |  
+\f7\b \cf23 \cb16 Success
+\f2\b0 \cf15 \cb16  |\
+|  
+\f7\b \cf23 \cb16 Success
+\f2\b0 \cf15 \cb16        |  
+\f7\b \cf23 \cb16 i-01a5dd7b1bc02361f
+\f2\b0 \cf15 \cb16   |  
+\f7\b \cf23 \cb16 2026-05-04T16:34:55.385000+02:00
+\f2\b0 \cf15 \cb16   |  
+\f7\b \cf23 \cb16 Success
+\f2\b0 \cf15 \cb16  |\
+|  
+\f7\b \cf23 \cb16 Success
+\f2\b0 \cf15 \cb16        |  
+\f7\b \cf23 \cb16 i-07b4d3b768937de7d
+\f2\b0 \cf15 \cb16   |  
+\f7\b \cf23 \cb16 2026-05-04T16:34:26.236000+02:00
+\f2\b0 \cf15 \cb16   |  
+\f7\b \cf23 \cb16 Success
+\f2\b0 \cf15 \cb16  |\
+|  
+\f7\b \cf23 \cb16 Success
+\f2\b0 \cf15 \cb16        |  
+\f7\b \cf23 \cb16 i-0997e3a90c076d1da
+\f2\b0 \cf15 \cb16   |  
+\f7\b \cf23 \cb16 2026-05-04T16:34:31.283000+02:00
+\f2\b0 \cf15 \cb16   |  
+\f7\b \cf23 \cb16 Success
+\f2\b0 \cf15 \cb16  |\
++----------------+-----------------------+------------------------------------+----------+
+\f3\fs26 \cf6 \cb7 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf6 \
+\
+\uc0\u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \u8710 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26\fsmilli13333 \cf5 \cb4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf6 \cb7 \
+\pard\pardeftab720\partightenfactor0
+
+\f4\b\fs36 \cf6 get dns:\
+Instances
+\f0\fs40 \cf0 \cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f3\b0\fs26\fsmilli13333 \cf5 \cb4 aws ec2 describe-instances \\\
+  --filters "Name=tag:Role,Values=vote-result" \\\
+  --query "Reservations[].Instances[].\{InstanceId:InstanceId, PublicIP:PublicIpAddress, PublicDNS:PublicDnsName\}" \\\
+  --region us-east-2 \\\
+  --output table\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 |  
+\f7\b \cf23 \cb16 i-01a5dd7b1bc02361f
+\f2\b0 \cf15 \cb16 |  
+\f7\b \cf23 \cb16 ec2-18-218-203-216.us-east-2.compute.amazonaws.com
+\f2\b0 \cf15 \cb16   \
+|  
+\f7\b \cf23 \cb16 i-017ec50fd09c9fcba
+\f2\b0 \cf15 \cb16 |  
+\f7\b \cf23 \cb16 ec2-3-148-246-88.us-east-2.compute.amazonaws.com
+\f2\b0 \cf15 \cb16  
+\f3\fs26\fsmilli13333 \cf5 \cb4 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \
+\pard\pardeftab720\partightenfactor0
+
+\f4\b\fs36 \cf6 \cb7 Load balancer
+\f3\b0\fs26\fsmilli13333 \cf5 \cb4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf8 \cb7 aws elbv2 describe-load-balancers \\\
+  --query \cf12 \cb7 "LoadBalancers[0].DNSName"\cf8 \cb7  \\\
+  --region us-east-2 \\\
+  --output text\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 vote-app-hagen-alb-1751553011.us-east-2.elb.amazonaws.com
+\f3\fs26\fsmilli13333 \cf5 \cb4 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+
+\fs36 \cf5 +++++++++++++++++++\
++++++++++++++++++++\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 vote-app-hagen-alb-1751553011.us-east-2.elb.amazonaws.com/vote
+\f3\fs36 \cf5 \cb4 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs24 \cf0 \cb1 Vote App
+\f1\b0 : 
+\f2\fs26\fsmilli13333 http://your-alb-dns/
+\f1\fs24  or 
+\f2\fs26\fsmilli13333 http://your-alb-dns/vote
+\f1\fs24 \
+
+\f0\b Result App
+\f1\b0 : 
+\f2\fs26\fsmilli13333 http://your-alb-dns/result
+\fs26 \
+\pard\pardeftab720\partightenfactor0
+
+\f3\fs36 \cf5 \cb4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs40 \cf0 \cb1 Common Reasons for Empty CommandInvocations\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls2\ilvl0
+\f1\b0\fs24 \cf0 \kerning1\expnd0\expndtw0 {\listtext	1	}\expnd0\expndtw0\kerning0
+The association has 
+\f0\b no targets
+\f1\b0  (no instances attached).\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 {\listtext	2	}\expnd0\expndtw0\kerning0
+The instances are not properly registered with SSM.\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 {\listtext	3	}\expnd0\expndtw0\kerning0
+The association is using a tag or group that doesn't match any running instance.\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 {\listtext	4	}\expnd0\expndtw0\kerning0
+The association is in a "broken" state.\
+\pard\pardeftab720\partightenfactor0
+
+\f3\fs36 \cf5 \cb4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf0 \cb1 ALB listens on port 
+\f0\b 80
+\f1\b0  (public)\
+Forwards traffic to your Vote instances on port 
+\f0\b 8080
+\f1\b0 \
+Works across both Availability Zones\
+\pard\pardeftab720\partightenfactor0
+
+\f3 \cf5 \cb4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \cb1 Vote (public) 
+\f8 \uc0\u8594 
+\f1  can reach DB (private) on port 5432\
+Vote (public) 
+\f8 \uc0\u8594 
+\f1  can reach Redis (private) on port 6379\
+Result (public) 
+\f8 \uc0\u8594 
+\f1  can reach both DB and Redis\
+Worker (private) 
+\f8 \uc0\u8594 
+\f1  can reach Redis and DB\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs40 \cf0 \'b4\'b4\'b4\'b4\'b4\'b4\'b4\'b4\'b4\'b4\'b4\'b4\'b4\'b4\'b4\'b4\'b4\'b4\'b4\'b4\
+To Verify\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0\fs24 \cf0 After applying the Security Groups, test from one of your Vote instances:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26\fsmilli13333 \cf0 bash
+\f0\b\fs28 \
+\pard\pardeftab720\partightenfactor0
+
+\f9\i\b0\fs26\fsmilli13333 \cf0 # From inside Vote instance (via SSM)
+\f2\i0 \
+curl -I http://<redis-private-ip>:6379\
+nc -zv <db-private-ip> 5432\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs40 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\b0\fs28 \cf15 \cb16 \kerning1\expnd0\expndtw0 \CocoaLigature0 |                                       DescribeInstances                                       |\
++---------------------+------------------------------------------------------+------------------+\
+|     InstanceId      |                      PublicDNS                       |    PublicIP      |\
++---------------------+------------------------------------------------------+------------------+\
+|  
+\f7\b \cf23 \cb16 i-0075f06c585733076
+\f2\b0 \cf15 \cb16 |  
+\f7\b \cf23 \cb16 ec2-3-145-133-250.us-east-2.compute.amazonaws.com
+\f2\b0 \cf15 \cb16    |  
+\f7\b \cf23 \cb16 3.145.133.250
+\f2\b0 \cf15 \cb16    |\
+|  
+\f7\b \cf23 \cb16 i-089f6a4c3a26f5232
+\f2\b0 \cf15 \cb16 |  
+\f7\b \cf23 \cb16 ec2-18-190-239-170.us-east-2.compute.amazonaws.com
+\f2\b0 \cf15 \cb16   |  
+\f7\b \cf23 \cb16 18.190.239.170
+\f2\b0 \cf15 \cb16   |\
++---------------------+------------------------------------------------------+------------------+
+\f0\b\fs40 \cf0 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+Key Points for Your Setup (SSM + Ansible + S3)\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls3\ilvl0
+\fs24 \cf0 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+S3 access
+\f1\b0  
+\f8 \uc0\u8594 
+\f1  Use 
+\f0\b Gateway Endpoint
+\f1\b0  (only this is needed for S3)\
+\ls3\ilvl0
+\f0\b \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+SSM Session Manager
+\f1\b0  
+\f8 \uc0\u8594 
+\f1  Needs 
+\f0\b Interface Endpoints
+\f1\b0  (different type)\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls3\ilvl0\cf0 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Gateway Endpoint mainly helps your 
+\f0\b private subnets
+\f1\b0  (worker + postgres instances) when they run Ansible playbooks that download/upload files from S3.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\f3\fs26 \cf8 \cb7 EC2 in Private Subnet \
+        \uc0\u8595 \
+   Route Table \
+        \uc0\u8595  (special route: pl-xxx \u8594  vpce-xxx)\
+   S3 Gateway Endpoint \
+        \uc0\u8595  (AWS internal network)\
+      S3 Bucket (private & fast)\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs40 \cf0 \cb1 ################################ - [\'c4] - ##################################
+\fs24 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0\fs36 \cf0 Here is 
+\f0\b the
+\f1\b0  - 
+\f0\b exact difference
+\f1\b0 :\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3900\clftsWidth3 \clheight857 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth3580\clftsWidth3 \clheight857 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth3560\clftsWidth3 \clheight857 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth4820\clftsWidth3 \clheight857 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Endpoint Type\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Attached To\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 How it is attached\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 What it affects\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3900\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth3580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth3560\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth4820\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 S3 Gateway Endpoint
+\f1\b0 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Route Table\
+connected with Pub, Priv Route Table\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 You specify 
+\f2 route_table_ids
+\f1 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 All instances using that route table\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3900\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth3580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth3560\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth4820\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f0\b \cf0 SSM Interface Endpoints
+\f1\b0 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f0\b \cf0 1 IE pro Subnets per AZ
+\f1\b0 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 You specify 
+\f2 subnet_ids
+\f1 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 All instances in those subnets
+\fs24 \cell \lastrow\row
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs40 \cf0 ##########\
+\pard\pardeftab720\partightenfactor0
+
+\f3\b0\fs26 \cf8 \cb7 You (outside) \
+   \uc0\u8595 \
+SSM Service\
+   \uc0\u8595 \
+   \uc0\u9484 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9488 \
+   \uc0\u9474   SSM Interface       \u9474  \u8592  ssm endpoint\
+   \uc0\u9474   Endpoints (3)       \u9474  \u8592  ssmmessages endpoint\
+   \uc0\u9474   in your subnet      \u9474  \u8592  ec2messages endpoint\
+   \uc0\u9492 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9496 \
+           \uc0\u8595  (private IP)\
+   EC2 Instance 1     EC2 Instance 2   \uc0\u8592  Both use the same 3 endpoints
+\f8\fs24 \cf0 \cb1 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf0 VPC Endpoint Type\
+Attached To\
+What You Specify in Terraform\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 S3 Gateway Endpoint
+\f1\b0 \
+
+\f0\b Route Table
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26\fsmilli13333 \cf0 route_table_ids = [...]
+\f1\fs24 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 SSM Interface Endpoints
+\f1\b0 \
+
+\f0\b Subnets
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26\fsmilli13333 \cf0 subnet_ids = [...]
+\f1\fs24 \
+\pard\pardeftab720\partightenfactor0
+
+\f8 \cf0 \
+\uc0\u8594 
+\f1  
+\f0\b Total: 4 endpoints
+\f1\b0  (1 Gateway + 3 Interface)\
+\
+You create 
+\f0\b only 1 Interface Endpoint per AWS service
+\f1\b0 .\
+That 
+\f0\b one endpoint
+\f1\b0  places 
+\f0\b one ENI in each subnet
+\f1\b0  you specify.\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs40 \cf0 ##################################################################
+\fs24 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 A. SSM Call from Outside (Your MacBook 
+\f10 \uc0\u8594 
+\f0  EC2)
+\fs28 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26\fsmilli13333 \cf0 Your laptop (outside)\
+       
+\f3 \uc0\u8595 
+\f2  (HTTPS to SSM public endpoint)\
+AWS Systems Manager service\
+       
+\f3 \uc0\u8595 
+\f2  (AWS private backbone)\
+SSM Interface Endpoints (in your VPC, private subnets)\
+       
+\f3 \uc0\u8595 
+\f2  (private IPs)\
+SSM Agent on your EC2 instance (private subnet)\
+       
+\f3 \uc0\u8596 
+\f2  Secure Session established\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs24 \cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26\fsmilli13333 \cf0 EC2 in Private Subnet \
+        
+\f3 \uc0\u8595 
+\f2 \
+   Route Table \
+        
+\f3 \uc0\u8595 
+\f2  (special route: pl-xxx 
+\f3 \uc0\u8594 
+\f2  vpce-xxx)\
+   S3 Gateway Endpoint \
+        
+\f3 \uc0\u8595 
+\f2  (AWS internal network)\
+      S3 Bucket (private & fast)\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26\fsmilli13333 \cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs26 \cf0 \'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4_\'97\'97_\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4
+\f1\b0\fs24 \
+\pard\pardeftab720\partightenfactor0
+
+\f3\fs26\fsmilli13333 \cf5 \cb4 aws ssm create-association \\\
+  --name "AWS-ApplyAnsiblePlaybooks" \\\
+  --targets "Key=tag:Environment,Values=Production" \\\
+  --parameters '\{\
+    "SourceType":["S3"],\
+    "SourceInfo":["\{\\"path\\":\\"https://my-ansible-bucket.s3.amazonaws.com/ansible-project.zip\\"\}"],\
+    "InstallDependencies":["True"],\
+    "PlaybookFile":["site.yml"],\
+    "Verbose":["-v"]\
+  \}' \\\
+  --association-name "MyAnsibleSiteAssociation" \\\
+  --schedule-expression "cron(0 2 ? * SUN *)"\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs26 \cf0 \cb1 \'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4
+\f1\b0\fs24 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs40 \cf0 Detailed Network Flow (Step by Step)\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls4\ilvl0
+\fs24 \cf0 \kerning1\expnd0\expndtw0 {\listtext	1	}\expnd0\expndtw0\kerning0
+You (CLI) 
+\f10 \uc0\u8594 
+\f0  SSM Service
+\f1\b0 \uc0\u8232 Your laptop calls 
+\f2\fs26\fsmilli13333 aws ssm create-association
+\f1\fs24  
+\f8 \uc0\u8594 
+\f1  goes over HTTPS to the public SSM API.\
+\ls4\ilvl0
+\f0\b \kerning1\expnd0\expndtw0 {\listtext	2	}\expnd0\expndtw0\kerning0
+SSM Service stores the Association
+\f1\b0 \uc0\u8232 SSM saves the schedule + parameters (including S3 path).\
+\ls4\ilvl0
+\f0\b \kerning1\expnd0\expndtw0 {\listtext	3	}\expnd0\expndtw0\kerning0
+SSM Service 
+\f10 \uc0\u8594 
+\f0  EC2 Instances (at scheduled time)
+\f1\b0 \uc0\u8232 At 2 AM (or when you trigger it), SSM contacts the SSM Agent on your instances using:\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\partightenfactor0
+\ls4\ilvl1
+\f0\b \cf0 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+SSM Interface Endpoints
+\f1\b0  (ssm, ssmmessages, ec2messages)\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls4\ilvl0
+\f0\b \cf0 \kerning1\expnd0\expndtw0 {\listtext	4	}\expnd0\expndtw0\kerning0
+EC2 Instance downloads Ansible Playbook from S3
+\f1\b0 \uc0\u8232 This is the most important part for you:
+\f2\fs26\fsmilli13333 \uc0\u8232 
+\f0\b\fs22 \uc0\u8232 
+\fs28 \uc0\u8232 
+\f2\b0\fs26\fsmilli13333 EC2 Instance (Private Subnet)\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls4\ilvl0\cf0 \kerning1\expnd0\expndtw0 {\listtext	5	}\expnd0\expndtw0\kerning0
+      
+\f3 \uc0\u8595 
+\f2  (SSM Agent)\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	6	}\expnd0\expndtw0\kerning0
+AWS-ApplyAnsiblePlaybooks document runs\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	7	}\expnd0\expndtw0\kerning0
+      
+\f3 \uc0\u8595 
+\f2 \
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	8	}\expnd0\expndtw0\kerning0
+Downloads zip from S3 
+\f3 \uc0\u8594 
+\f2  https://your-bucket.s3.amazonaws.com/...\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	9	}\expnd0\expndtw0\kerning0
+      
+\f3 \uc0\u8595 
+\f2 \
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	10	}\expnd0\expndtw0\kerning0
+Uses the route in the **Private Route Table**\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	11	}\expnd0\expndtw0\kerning0
+      
+\f3 \uc0\u8595 
+\f2 \
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	12	}\expnd0\expndtw0\kerning0
+S3 Gateway Endpoint (if you created it)\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	13	}\expnd0\expndtw0\kerning0
+      
+\f3 \uc0\u8595 
+\f2  (private AWS backbone, no internet)\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	14	}\expnd0\expndtw0\kerning0
+Your S3 Bucket\uc0\u8232 
+\f1\fs24 \uc0\u8232 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls4\ilvl0
+\f0\b \cf0 \kerning1\expnd0\expndtw0 {\listtext	15	}\expnd0\expndtw0\kerning0
+Instance runs Ansible
+\f1\b0 \uc0\u8232 Unzips the playbook and executes 
+\f2\fs26\fsmilli13333 site.yml
+\f1\fs24 .\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+}
