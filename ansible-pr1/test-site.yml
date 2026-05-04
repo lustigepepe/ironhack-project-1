@@ -1,0 +1,102 @@
+---
+- name: Prepare all instances (Common + Docker)
+  hosts: all
+  become: yes
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+  roles:
+    - common
+    - docker
+
+# ==================== Simple Services ====================
+
+- name: Deploy Vote + Result
+  hosts: vote-result # ← changed - to _
+  become: yes
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+  vars:
+    services_to_deploy:
+      - vote
+      - result
+  roles:
+    - deploy
+
+- name: Deploy Worker + Redis
+  hosts: redis-worker # ← changed - to _
+  become: yes
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+  vars:
+    services_to_deploy:
+      - worker
+      - redis
+  roles:
+    - deploy
+
+# ==================== PostgreSQL ====================
+
+- name: Deploy PostgreSQL Primary
+  hosts: postgres-primary # ← changed - to _
+  become: yes
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+  vars:
+    postgres_replication_role: primary
+    services_to_deploy:
+      - db
+  roles:
+    - deploy
+
+- name: Deploy PostgreSQL Standby
+  hosts: postgres-standby # ← changed - to _
+  become: yes
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+  vars:
+    postgres_replication_role: standby
+    postgres_primary_host: "{{ groups['postgres-primary'][0] | default('') }}"
+    services_to_deploy:
+      - db
+  roles:
+    - deploy
+
+
+
+
+---
+- name: Simple test playbook - Write a file
+  hosts: localhost
+  connection: local
+  # become: yes
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+  roles:
+    - common
+    - docker
+  tasks:
+    #   - name: Create a test file to verify Ansible works
+    #     ansible.builtin.copy:
+    #       content: |
+    #         Hello from Ansible via AWS SSM!
+    #         This file was created on {{ ansible_date_time.iso8601 }}
+    #         Host: {{ ansible_hostname }}
+    #         User: {{ ansible_user }}
+    #         Change: with common
+    #       dest: /tmp/ansible_test_success.txt
+    #       mode: "0644"
+
+    #   - name: Show the file content
+    #     ansible.builtin.command: cat /tmp/ansible_test_success.txt
+    #     register: file_content
+    #     changed_when: false
+
+    #   - name: Debug - Print the result
+    #     ansible.builtin.debug:
+    # msg: "{{ file_content.stdout_lines }}"

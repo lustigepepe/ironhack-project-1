@@ -1,0 +1,29 @@
+---
+- name: Prepare all instances (Common + Docker)
+  hosts: localhost
+  connection: local
+  become: yes
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+  roles:
+    - common
+    - docker
+
+# =============================================
+# FORCE Deploy for Testing
+# =============================================
+- name: Deploy Services (FORCED)
+  hosts: localhost
+  connection: local
+  become: yes
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+  vars:
+    app_dir: /opt/vote-app
+    services_to_deploy:
+      - vote
+      - result
+  roles:
+    - deploy

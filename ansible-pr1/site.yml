@@ -1,67 +1,169 @@
 ---
-- name: Prepare all instances (Common + Docker)
-  hosts: all
+# =============================================
+# 1. Install Required Collections
+# =============================================
+- name: Install Ansible Collections
+  hosts: localhost
+  connection: local
   become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Install collections from requirements.yml
+      ansible.builtin.command: ansible-galaxy collection install -r requirements.yml --force
+      args:
+        chdir: "{{ playbook_dir }}"
+      changed_when: false
+
+    - name: Verify collections are installed
+      ansible.builtin.command: ansible-galaxy collection list
+      register: collection_list
+      changed_when: false
+
+    - name: Show installed collections
+      ansible.builtin.debug:
+        msg: "{{ collection_list.stdout_lines | default(['No output']) }}"
+
+# =============================================
+# 2. Common Setup (Docker + Base)
+# =============================================
+- name: Prepare all instances (Common + Docker)
+  hosts: localhost
+  connection: local
+  become: yes
+  gather_facts: yes
   vars_files:
-    - ../vault.yml
+    - ./vault.yml
     - group_vars/all.yml
   roles:
     - common
     - docker
 
-# ==================== Simple Services ====================
+# =============================================
+# 3. Deploy Services based on EC2 Role Tag
+# =============================================
 
 - name: Deploy Vote + Result
-  hosts: role_vote-result # ← changed - to _
+  hosts: localhost
+  connection: local
   become: yes
+  gather_facts: yes
   vars_files:
-    - ../vault.yml
+    - ./vault.yml
     - group_vars/all.yml
   vars:
     services_to_deploy:
       - vote
       - result
+
+  pre_tasks:
+    - name: Gather EC2 instance tags
+      amazon.aws.ec2_metadata_facts:
+      register: ec2_facts
+      ignore_errors: yes
+
+    - name: Show server role tag
+      ansible.builtin.debug:
+        msg: "Server Role Tag = {{ ansible_ec2_instance_tags.Role | default('NOT_FOUND')
+          }}"
+
+    - name: Skip if this is not a vote-result instance
+      ansible.builtin.meta: end_play
+      when: ansible_ec2_instance_tags.Role | default('') != 'vote-result'
+
   roles:
     - deploy
 
 - name: Deploy Worker + Redis
-  hosts: role_redis-worker # ← changed - to _
+  hosts: localhost
+  connection: local
   become: yes
+  gather_facts: yes
   vars_files:
-    - ../vault.yml
+    - ./vault.yml
     - group_vars/all.yml
   vars:
     services_to_deploy:
       - worker
       - redis
+
+  pre_tasks:
+    - name: Gather EC2 instance tags
+      amazon.aws.ec2_metadata_facts:
+      register: ec2_facts
+      ignore_errors: yes
+
+    - name: Show server role tag
+      ansible.builtin.debug:
+        msg: "Server Role Tag = {{ ansible_ec2_instance_tags.Role | default('NOT_FOUND')
+          }}"
+
+    - name: Skip if this is not a redis-worker instance
+      ansible.builtin.meta: end_play
+      when: ansible_ec2_instance_tags.Role | default('') != 'redis-worker'
+
   roles:
     - deploy
 
-# ==================== PostgreSQL ====================
-
 - name: Deploy PostgreSQL Primary
-  hosts: role_postgres-primary # ← changed - to _
+  hosts: localhost
+  connection: local
   become: yes
+  gather_facts: yes
   vars_files:
-    - ../vault.yml
+    - ./vault.yml
     - group_vars/all.yml
   vars:
     postgres_replication_role: primary
     services_to_deploy:
       - db
+
+  pre_tasks:
+    - name: Gather EC2 instance tags
+      amazon.aws.ec2_metadata_facts:
+      register: ec2_facts
+      ignore_errors: yes
+
+    - name: Show server role tag
+      ansible.builtin.debug:
+        msg: "Server Role Tag = {{ ansible_ec2_instance_tags.Role | default('NOT_FOUND')
+          }}"
+
+    - name: Skip if this is not a postgres-primary instance
+      ansible.builtin.meta: end_play
+      when: ansible_ec2_instance_tags.Role | default('') != 'postgres-primary'
+
   roles:
     - deploy
 
 - name: Deploy PostgreSQL Standby
-  hosts: role_postgres-standby # ← changed - to _
+  hosts: localhost
+  connection: local
   become: yes
+  gather_facts: yes
   vars_files:
-    - ../vault.yml
+    - ./vault.yml
     - group_vars/all.yml
   vars:
     postgres_replication_role: standby
-    postgres_primary_host: "{{ groups['role_postgres-primary'][0] | default('') }}"
+    postgres_primary_host: "{{ groups['postgres-primary'][0] | default('') }}"
     services_to_deploy:
       - db
+
+  pre_tasks:
+    - name: Gather EC2 instance tags
+      amazon.aws.ec2_metadata_facts:
+      register: ec2_facts
+      ignore_errors: yes
+
+    - name: Show server role tag
+      ansible.builtin.debug:
+        msg: "Server Role Tag = {{ ansible_ec2_instance_tags.Role | default('NOT_FOUND')
+          }}"
+
+    - name: Skip if this is not a postgres-standby instance
+      ansible.builtin.meta: end_play
+      when: ansible_ec2_instance_tags.Role | default('') != 'postgres-standby'
+
   roles:
     - deploy

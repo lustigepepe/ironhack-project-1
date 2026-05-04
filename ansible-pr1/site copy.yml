@@ -1,0 +1,116 @@
+---
+# =============================================
+# 1. Install Required Collections
+# =============================================
+- name: Install Ansible Collections
+  hosts: localhost
+  connection: local
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Install collections from requirements.yml
+      ansible.builtin.command: ansible-galaxy collection install -r requirements.yml --force
+      args:
+        chdir: "{{ playbook_dir }}"
+      changed_when: false
+
+    - name: Verify collections are installed
+      ansible.builtin.command: ansible-galaxy collection list
+      register: collection_list
+      changed_when: false
+
+    - name: Show installed collections
+      ansible.builtin.debug:
+        msg: "{{ collection_list.stdout_lines | default(['No output']) }}"
+
+# =============================================
+# 2. Common Setup (Docker + Base)
+# =============================================
+- name: Prepare all instances (Common + Docker)
+  hosts: localhost
+  connection: local
+  become: yes
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+  roles:
+    - common
+    - docker
+
+# =============================================
+# 3. Deploy Services (Fixed - using pre_tasks)
+# =============================================
+
+- name: Deploy Vote + Result
+  hosts: localhost
+  connection: local
+  become: yes
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+  vars:
+    services_to_deploy:
+      - vote
+      - result
+  roles:
+    - deploy
+  pre_tasks:
+    - name: Skip if this is not a vote-result instance
+      ansible.builtin.meta: end_play
+      when: "'vote-result' not in ansible_tags | default([])"
+
+- name: Deploy Worker + Redis
+  hosts: localhost
+  connection: local
+  become: yes
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+  vars:
+    services_to_deploy:
+      - worker
+      - redis
+  roles:
+    - deploy
+  pre_tasks:
+    - name: Skip if this is not a redis-worker instance
+      ansible.builtin.meta: end_play
+      when: "'redis-worker' not in ansible_tags | default([])"
+
+- name: Deploy PostgreSQL Primary
+  hosts: localhost
+  connection: local
+  become: yes
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+  vars:
+    postgres_replication_role: primary
+    services_to_deploy:
+      - db
+  roles:
+    - deploy
+  pre_tasks:
+    - name: Skip if this is not a postgres-primary instance
+      ansible.builtin.meta: end_play
+      when: "'postgres-primary' not in ansible_tags | default([])"
+
+- name: Deploy PostgreSQL Standby
+  hosts: localhost
+  connection: local
+  become: yes
+  vars_files:
+    - ./vault.yml
+    - group_vars/all.yml
+  vars:
+    postgres_replication_role: standby
+    postgres_primary_host: "{{ groups['postgres-primary'][0] | default('') }}"
+    services_to_deploy:
+      - db
+  roles:
+    - deploy
+  pre_tasks:
+    - name: Skip if this is not a postgres-standby instance
+      ansible.builtin.meta: end_play
+      when: "'postgres-standby' not in ansible_tags | default([])"

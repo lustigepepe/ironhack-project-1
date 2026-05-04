@@ -4,6 +4,12 @@
     update_cache: yes
     cache_valid_time: 3600
 
+- name: Install tzdata first (critical for timezone module)
+  ansible.builtin.apt:
+    name: tzdata
+    state: present
+    update_cache: yes
+
 - name: Install minimal essential packages
   apt:
     name:
@@ -26,8 +32,12 @@
   timezone:
     name: UTC
 
-- name: Remove unnecessary packages and clean cache
+- name: Remove unnecessary packages
   apt:
     autoremove: yes
-    autoclean: yes
     purge: yes
+  register: autoremove_result
+
+- name: Clean apt cache
+  apt:
+    autoclean: yes
