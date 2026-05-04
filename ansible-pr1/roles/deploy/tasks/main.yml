@@ -1,6 +1,5 @@
----
 - name: Create application directory
-  file:
+  ansible.builtin.file:
     path: "{{ app_dir }}"
     state: directory
     owner: ubuntu
@@ -8,7 +7,7 @@
     mode: "0755"
 
 - name: Copy docker-compose.yml to remote host
-  copy:
+  ansible.builtin.copy:
     src: "{{ playbook_dir }}/docker-compose.yml"
     dest: "{{ app_dir }}/docker-compose.yml"
     owner: ubuntu
@@ -21,23 +20,35 @@
     password: "{{ docker_password | default(omit) }}"
   no_log: true
   when: docker_username is defined
-
-- name: Deploy specific Docker services
+# ====================== DEPLOY ======================
+- name: Pull latest images and start services (Clean Deploy)
   community.docker.docker_compose_v2:
     project_src: "{{ app_dir }}"
     services: "{{ services_to_deploy | default(omit) }}"
     state: present
     pull: always
     recreate: always
+    remove_orphans: true
+    force_recreate: true # Extra force
   register: compose_result
+  retries: 3
+  delay: 15
+  until: compose_result is success
+  environment:
+    DOCKER_CLI_VERBOSE: "1"
 
 - name: Display compose deployment result
-  debug:
+  ansible.builtin.debug:
     var: compose_result
     verbosity: 1
 
 - name: Show running containers
-  command: docker compose ps
+  ansible.builtin.command: docker compose ps
   args:
     chdir: "{{ app_dir }}"
   changed_when: false
+  register: compose_ps
+
+- name: Display containers status
+  ansible.builtin.debug:
+    msg: "{{ compose_ps.stdout_lines }}"

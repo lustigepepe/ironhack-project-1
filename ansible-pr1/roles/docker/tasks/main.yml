@@ -14,6 +14,15 @@
       - apt-transport-https
     state: present
 
+- name: Remove old Docker repository files (prevent duplicates)
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/apt/sources.list.d/docker.list
+    - /etc/apt/sources.list.d/docker.list.old
+    - /etc/apt/sources.list.d/docker.list.save
+
 - name: Create application directory
   file:
     path: "{{ app_dir }}"
@@ -30,12 +39,18 @@
 
 - name: Add Docker official repository
   apt_repository:
-    repo: "deb [arch={{ ansible_architecture }}
+    repo: "deb [arch={{ ansible_architecture | replace('x86_64', 'amd64') }}
       signed-by=/etc/apt/keyrings/docker.asc]
       https://download.docker.com/linux/ubuntu {{ ansible_distribution_release
       }} stable"
-    state: present
     filename: docker
+    state: present
+    update_cache: yes
+
+- name: Update apt cache after adding repo
+  apt:
+    update_cache: yes
+    cache_valid_time: 0
 
 - name: Install Docker Engine and Compose plugin
   apt:
@@ -47,6 +62,10 @@
       - docker-compose-plugin
     state: present
     update_cache: yes
+  retries: 5
+  delay: 10
+  register: docker_install
+  until: docker_install is succeeded
 
 - name: Enable and start Docker service
   service:
@@ -67,3 +86,4 @@
   when:
     - ansible_user != "root"
     - ansible_facts['user_id'] != "0"
+    - ansible_connection != "local" # ← Add this line to prevent reboot during debug

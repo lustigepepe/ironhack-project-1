@@ -7,16 +7,15 @@ regions:
 filters:
   instance-state-name: running
   tag:Name: "vote-app-hagen*" # Matches all your instances
-
+  # Group by Role tag → vote_result, redis_worker,"postgres-primary","postgres-standby"
 keyed_groups:
-  # Group by Role tag → role_vote_result, role_redis_worker, etc.
   - key: tags.Role
-    prefix: role_
+    prefix: ""
     separator: ""
 
   # Group by full Name tag
   - key: tags.Name
-    prefix: name_
+    prefix: ""
     separator: ""
 
   # Group by Availability Zone
