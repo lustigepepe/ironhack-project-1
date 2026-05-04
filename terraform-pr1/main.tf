@@ -551,8 +551,27 @@ resource "aws_lb_target_group" "vote" {
 
   tags = { Name = "${var.project_name}-vote-tg" }
 }
+# Target Group for Result App
+resource "aws_lb_target_group" "result" {
+  provider    = aws.use1
+  name        = "${var.project_name}-result-tg"
+  port        = 8081
+  protocol    = "HTTP"
+  vpc_id      = aws_vpc.main.id
+  target_type = "instance"
 
-# ==================== LISTENER (HTTP) ====================
+  health_check {
+    path                = "/"
+    healthy_threshold   = 2
+    unhealthy_threshold = 10
+    timeout             = 5
+    interval            = 10
+    matcher             = "200"
+  }
+
+  tags = { Name = "${var.project_name}-result-tg" }
+}
+# ==================== HTTP LISTENER ====================
 resource "aws_lb_listener" "http" {
   provider          = aws.use1
   load_balancer_arn = aws_lb.main.arn
@@ -560,11 +579,49 @@ resource "aws_lb_listener" "http" {
   protocol          = "HTTP"
 
   default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.vote.arn
+    type = "fixed-response"
+    fixed_response {
+      content_type = "text/plain"
+      status_code  = "404"
+      message_body = "Not Found"
+    }
   }
 }
 
+# Vote App Rule
+resource "aws_lb_listener_rule" "vote" {
+  provider     = aws.use1
+  listener_arn = aws_lb_listener.http.arn
+  priority     = 100
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.vote.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/vote*"]
+    }
+  }
+}
+
+# Result App Rule
+resource "aws_lb_listener_rule" "result" {
+  provider     = aws.use1
+  listener_arn = aws_lb_listener.http.arn
+  priority     = 200
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.result.arn
+  }
+  condition {
+    path_pattern {
+      values = ["/result*"]
+    }
+  }
+}
 # ==================== ATTACH VOTE INSTANCES ====================
 resource "aws_lb_target_group_attachment" "vote" {
   for_each         = aws_instance.vote
@@ -572,4 +629,13 @@ resource "aws_lb_target_group_attachment" "vote" {
   target_group_arn = aws_lb_target_group.vote.arn
   target_id        = each.value.id
   port             = 8080
+}
+
+# Attach Result instances to the target group
+resource "aws_lb_target_group_attachment" "result" {
+  for_each         = aws_instance.vote
+  provider         = aws.use1
+  target_group_arn = aws_lb_target_group.result.arn
+  target_id        = each.value.id
+  port             = 8081
 }
